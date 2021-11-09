@@ -1,0 +1,57 @@
+{
+  "name": "@indykiteone/jarvis-sdk-web",
+  "version": "0.1.1",
+  "description": "UI SDK for IndyKite.id",
+  "main": "./lib/services/core/index.js",
+  "types": "./lib/services/core/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "fix:prettier": "prettier --loglevel warn --write .",
+    "lint:prettier": "prettier --check .",
+    "test": "jest --config=jest.config.js",
+    "build": "webpack",
+    "check-es": "es-check es6 ./dist/*.js --verbose",
+    "coverage": "jest --coverage"
+  },
+  "keywords": [
+    "indykite",
+    "identity",
+    "sdk",
+    "js",
+    "react",
+    "angular",
+    "vue",
+    "node"
+  ],
+  "author": "IndyKite",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "core-js": "^3.16.0",
+    "crypto-js": "^4.1.1",
+    "intl-messageformat": "^9.8.1",
+    "query-string": "^7.0.1",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "devDependencies": {
+    "node-polyfill-webpack-plugin": "^1.1.4",
+    "@babel/core": "^7.14.8",
+    "@babel/preset-env": "^7.14.8",
+    "babel-loader": "^8.2.2",
+    "es-check": "^5.2.4",
+    "jest": "^27.0.6",
+    "prettier": "2.2.1",
+    "webpack": "^5.47.0",
+    "webpack-cli": "^4.7.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/indykite/jarvis-sdk-web.git"
+  },
+  "bugs": {
+    "url": "https://github.com/indykite/jarvis-sdk-web/issues"
+  },
+  "homepage": "https://github.com/indykite/jarvis-sdk-web#readme"
+}

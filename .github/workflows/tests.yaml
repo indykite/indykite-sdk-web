@@ -1,0 +1,23 @@
+name: Run tests
+on:
+  pull_request:
+
+jobs:
+  tests:
+    name: EsLint & Prettier & Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Setup Node
+        uses: actions/setup-node@master
+        with:
+          node-version: "12.x"
+      - name: Install Web Project
+        run: npm install
+      - name: Check the code
+        run: |
+          npm run-script lint:prettier
+      - name: Run the tests
+        run: |
+          npm test

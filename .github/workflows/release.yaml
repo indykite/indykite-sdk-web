@@ -8,6 +8,7 @@ jobs:
   prepare-release:
     env:
       REPO_NAME: "@indykiteone/jarvis-sdk-web"
+    runs-on: ubuntu-latest
     steps:
       - name: Set major release
         if: ${{ github.event.label.name == 'release-major' }}

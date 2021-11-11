@@ -2,4 +2,4 @@
 
 ## 0.1.1
 
-* [RELEASE] Initial Release
+- [RELEASE] Initial Release

@@ -38,14 +38,14 @@ jobs:
           git checkout ${{ github.event.pull_request.head.ref }}
       - name: Install Semver
         run: |
-            wget https://raw.githubusercontent.com/fsaintjacques/semver-tool/3.2.0/src/semver
-            chmod +x semver
+          wget https://raw.githubusercontent.com/fsaintjacques/semver-tool/3.2.0/src/semver
+          chmod +x semver
       - name: Bump version
         run: |
           export CURRENT=$(npm show $REPO_NAME | grep latest | cut -d':' -f 2 | xargs)
           export NEW_VERSION=$(semver bump ${{ env.RELEASE }} $CURRENT)
           echo "VERSION=$NEW_VERSION" >> $GITHUB_ENV
-      
+
       - name: Prepare CHANGELOG
         run: |
           echo "${{ github.event.pull_request.body }}" | csplit -s - "/##/"
@@ -55,12 +55,13 @@ jobs:
           grep "^*" xx01 >> CHANGELOG.tmp
           grep -v "^# " CHANGELOG.md >> CHANGELOG.tmp
           cp CHANGELOG.tmp CHANGELOG.md
-      
+
       - name: Prepare update
         run: |
           sed -i "s|\"version\": \"[^\"]*\"|\"version\": \"${{ env.VERSION }}\"|" package.json
-      
+
       - name: Commit changes
         run: |
           git add CHANGELOG.md package.json 
           git commit -m "Bump to version ${{ env.VERSION }}"
+          git push

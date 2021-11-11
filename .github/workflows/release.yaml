@@ -43,7 +43,7 @@ jobs:
       - name: Bump version
         run: |
           export CURRENT=$(npm show $REPO_NAME | grep latest | cut -d':' -f 2 | xargs)
-          export NEW_VERSION=$(semver bump ${{ env.RELEASE }} $CURRENT)
+          export NEW_VERSION=$(./semver bump ${{ env.RELEASE }} $CURRENT)
           echo "VERSION=$NEW_VERSION" >> $GITHUB_ENV
 
       - name: Prepare CHANGELOG

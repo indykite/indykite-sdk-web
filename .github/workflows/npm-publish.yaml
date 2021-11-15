@@ -7,7 +7,6 @@ on:
     paths:
       - "CHANGELOG.md"
 
-
 jobs:
   create-release:
     name: Create Release

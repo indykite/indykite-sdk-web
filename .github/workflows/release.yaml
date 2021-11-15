@@ -52,7 +52,7 @@ jobs:
           echo "# Changelog
           ## ${{ env.VERSION }}
           " >> CHANGELOG.tmp
-          grep "^*" xx01 >> CHANGELOG.tmp
+          grep "^-" xx01 >> CHANGELOG.tmp
           grep -v "^# " CHANGELOG.md >> CHANGELOG.tmp
           cp CHANGELOG.tmp CHANGELOG.md
 

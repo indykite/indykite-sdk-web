@@ -2,7 +2,7 @@ name: Publish
 
 on:
   push:
-    branches: [ release-pipeline ]
+    branches: [release-pipeline]
 
 jobs:
   create-release:
@@ -52,6 +52,7 @@ jobs:
         run: npm run-script check-es
 
   publish:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -64,4 +65,3 @@ jobs:
       #   run: npm publish --access public
       #   env:
       #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-  

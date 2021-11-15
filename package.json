@@ -1,6 +1,6 @@
 {
   "name": "@indykiteone/jarvis-sdk-web",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "UI SDK for IndyKite.id",
   "main": "./lib/services/core/index.js",
   "types": "./lib/services/core/index.d.ts",
@@ -10,10 +10,12 @@
   "scripts": {
     "fix:prettier": "prettier --loglevel warn --write .",
     "lint:prettier": "prettier --check .",
+    "clean": "rimraf dist",
     "test": "jest --config=jest.config.js",
     "build": "webpack",
     "check-es": "es-check es6 ./dist/*.js --verbose",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "prepublishOnly": "npm run clean && npm run build"
   },
   "keywords": [
     "indykite",
@@ -43,6 +45,7 @@
     "es-check": "^5.2.4",
     "jest": "^27.0.6",
     "prettier": "2.2.1",
+    "rimraf": "^2.7.1",
     "webpack": "^5.47.0",
     "webpack-cli": "^4.7.2"
   },

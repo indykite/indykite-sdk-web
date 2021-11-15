@@ -2,7 +2,11 @@ name: Publish
 
 on:
   push:
-    branches: [release-pipeline]
+    branches: [master]
+    # We want to release only whe there are relevant changes in the Changelog
+    paths:
+      - "CHANGELOG.md"
+
 
 jobs:
   create-release:
@@ -13,8 +17,8 @@ jobs:
         uses: actions/checkout@v2
       - name: Setup git
         run: |
-          git config user.email "pusher-ci@pusher.com"
-          git config user.name "Pusher CI"
+          git config --global user.name 'Github Actions'
+          git config --global user.email '${{ github.actor }}@users.noreply.github.com'
       - name: Prepare description
         run: |
           csplit -s CHANGELOG.md "/##/" {1}
@@ -25,16 +29,16 @@ jobs:
           echo "TAG=$TAG" >> $GITHUB_ENV
           echo $TAG
           cat CHANGELOG.tmp
-      # - name: Create Release
-      #   uses: actions/create-release@v1
-      #   env:
-      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #   with:
-      #     tag_name: ${{ env.TAG }}
-      #     release_name: ${{ env.TAG }}
-      #     body_path: CHANGELOG.tmp
-      #     draft: false
-      #     prerelease: false
+      - name: Create Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ env.TAG }}
+          release_name: ${{ env.TAG }}
+          body_path: CHANGELOG.tmp
+          draft: false
+          prerelease: false
   test:
     needs: create-release
     runs-on: ubuntu-latest
@@ -61,7 +65,7 @@ jobs:
           node-version: "12.x"
           registry-url: "https://registry.npmjs.org"
       - run: npm install
-      # - name: "Publish the package"
-      #   run: npm publish --access public
-      #   env:
-      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      - name: "Publish the package"
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

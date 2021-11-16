@@ -67,6 +67,10 @@ type renderLogin = (props: {
     forgotPasswordButton?: string;
     orOtherOptions?: string;
   };
+  placeholders?: {
+    username?: string;
+    password?: string;
+  };
 }) => void;
 
 type renderRegister = (props: {
@@ -83,6 +87,11 @@ type renderRegister = (props: {
     registerButton?: string;
     alreadyHaveAnAccountButton?: string;
     orOtherOptions?: string;
+  };
+  placeholders?: {
+    username?: string;
+    password?: string;
+    confirmPassword?: string;
   };
   /**
    * This is a temporary configuration only. Keep on mind that this property will be removed in the future.
@@ -106,6 +115,9 @@ type renderForgotPasswordForm = (props: {
     submitButton?: string;
     backToLogin?: string;
   };
+  placeholders?: {
+    username?: string;
+  };
 }) => void;
 
 type renderSetNewPasswordForm = (props: {
@@ -116,6 +128,10 @@ type renderSetNewPasswordForm = (props: {
     newPassword?: string;
     confirmNewPassword?: string;
     submitButton?: string;
+  };
+  placeholders?: {
+    password?: string;
+    confirmPassword?: string;
   };
 }) => void;
 

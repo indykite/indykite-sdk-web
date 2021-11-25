@@ -220,18 +220,17 @@ type oidcSetupDeprecated = (
 type oidcSetupNew = (options: { id: string; redirectUri: string; threadId: string }) => void;
 
 interface oidcSetup {
+  (options: {
+    id?: string;
+    redirectUri?: string;
+    threadId?: string;
+    loginApp?: string;
+  }): void;
+
   /**
    * @deprecated Move all the parameters to an options object.
    */
   (id?: string | null, redirectUri?: string | null, threadId?: string | null): void;
-  (options: {
-    id: string;
-    redirectUri: string;
-    threadId: string;
-    loginApp: {
-      [optionId: string]: string;
-    };
-  }): void;
 }
 
 type singleOidcSetupInput = {

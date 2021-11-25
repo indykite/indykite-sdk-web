@@ -67,6 +67,9 @@ type renderLogin = (props: {
     forgotPasswordButton?: string;
     orOtherOptions?: string;
   };
+  loginApp?: {
+    [optionId: string]: string;
+  };
 }) => void;
 
 type renderRegister = (props: {
@@ -83,6 +86,9 @@ type renderRegister = (props: {
     registerButton?: string;
     alreadyHaveAnAccountButton?: string;
     orOtherOptions?: string;
+  };
+  loginApp?: {
+    [optionId: string]: string;
   };
   /**
    * This is a temporary configuration only. Keep on mind that this property will be removed in the future.
@@ -202,11 +208,31 @@ interface IKUIUserAPI {
 
 export const IKUIUserAPI: IKUIUserAPI;
 
-type oidcSetup = (
+/**
+ * @deprecated
+ */
+type oidcSetupDeprecated = (
   id?: string | null,
   redirectUri?: string | null,
   threadId?: string | null,
 ) => void;
+
+type oidcSetupNew = (options: { id: string; redirectUri: string; threadId: string }) => void;
+
+interface oidcSetup {
+  /**
+   * @deprecated Move all the parameters to an options object.
+   */
+  (id?: string | null, redirectUri?: string | null, threadId?: string | null): void;
+  (options: {
+    id: string;
+    redirectUri: string;
+    threadId: string;
+    loginApp: {
+      [optionId: string]: string;
+    };
+  }): void;
+}
 
 type singleOidcSetupInput = {
   "~thread": {

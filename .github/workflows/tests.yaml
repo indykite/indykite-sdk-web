@@ -3,8 +3,8 @@ on:
   pull_request:
 
 jobs:
-  tests:
-    name: EsLint & Prettier & Unit Tests
+  lint:
+    name: EsLint & Prettier
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
@@ -21,3 +21,14 @@ jobs:
       - name: Run the tests
         run: |
           npm test
+  tests:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@master
+      - name: Run Tests
+        uses: artiomtr/jest-coverage-report-action@v2.0-rc.6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          threshold: 0

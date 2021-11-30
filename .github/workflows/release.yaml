@@ -50,6 +50,7 @@ jobs:
         run: |
           echo "${{ github.event.pull_request.body }}" | csplit -s - "/##/"
           echo "# Changelog
+
           ## ${{ env.VERSION }}
           " >> CHANGELOG.tmp
           grep "^-" xx01 >> CHANGELOG.tmp

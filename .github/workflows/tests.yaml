@@ -18,12 +18,10 @@ jobs:
       - name: Check the code
         run: |
           npm run-script lint:prettier
-      - name: Run the tests
-        run: |
-          npm test
   tests:
     name: Unit Tests
     runs-on: ubuntu-latest
+    needs: [lint]
     steps:
       - name: Checkout Repo
         uses: actions/checkout@master

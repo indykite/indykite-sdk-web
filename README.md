@@ -4,7 +4,7 @@
 
 # IndyKite Client UI SDK
 
-IndyKite is a cloud identity platform built to secure and manage human & non-person (IoT) identities and their data. This repository containts the JavaScript Library packages for [IndyKite Platform](https://indykite.com/platform) Client SDK.
+IndyKite is a cloud identity platform built to secure and manage human & non-person (IoT) identities and their data. This repository containts the JavaScript Library packages for [IndyKite Platform](https://indykite.com/) Client SDK.
 
 This library contains multiple client libraries for each service of the platform.
 
@@ -86,8 +86,7 @@ For example:
 
 ### Trial
 
-For a trial please contact [IndyKite](https://indykite.com/trial) to setup and
-configure the platform.
+For a trial please contact [IndyKite](https://www.indykite.com/contact-us) to setup and configure the platform.
 
 ### Init
 

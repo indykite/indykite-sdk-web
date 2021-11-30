@@ -789,7 +789,7 @@ Feel free to file a bug, submit an issue or give us feedback on our [issues page
 
 ## Vulnerability Reporting
 
-[Responsible Disclosure](responsible_disclosure.md)
+[Responsible Disclosure](https://www.indykite.com/security)
 
 ## Changelog
 

@@ -41,7 +41,7 @@ type onRenderComponent =
       id: string,
       url: string,
     ) => HTMLElement | undefined)
-  | ((defaultComponent: HTMLElement, componentType: "separator") => HTMLElement | undefined);
+  | ((defaultComponent: HTMLElement, componentType: "separator"|"webauthn") => HTMLElement | undefined);
 
 type DataTokenResponseType = {
   "@type": string;

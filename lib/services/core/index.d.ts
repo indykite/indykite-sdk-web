@@ -41,7 +41,10 @@ type onRenderComponent =
       id: string,
       url: string,
     ) => HTMLElement | undefined)
-  | ((defaultComponent: HTMLElement, componentType: "separator"|"webauthn") => HTMLElement | undefined);
+  | ((
+      defaultComponent: HTMLElement,
+      componentType: "separator" | "webauthn",
+    ) => HTMLElement | undefined);
 
 type DataTokenResponseType = {
   "@type": string;
@@ -189,6 +192,18 @@ type sendNewPassword = (
 type loginSetup = () => Promise<LoginSetupDataType>;
 type registerSetup = () => Promise<LoginSetupDataType>;
 
+type webauthn = {
+  getCredentialCreationOptions: (options: {
+    displayName?: string;
+    name?: string;
+    optionId?: string;
+  }) => Promise<any>;
+  sendCreatedCredential: (options: {
+    threadId: string;
+    publicKeyCredential: PublicKeyCredential;
+  }) => Promise<any>;
+};
+
 interface IKUIUserAPI {
   isAuthenticated: isAuthenticated;
   logoutAllUsers: logoutAllUsers;
@@ -204,6 +219,7 @@ interface IKUIUserAPI {
   sendNewPassword: sendNewPassword;
   loginSetup: loginSetup;
   registerSetup: registerSetup;
+  webauthn: webauthn;
 }
 
 export const IKUIUserAPI: IKUIUserAPI;

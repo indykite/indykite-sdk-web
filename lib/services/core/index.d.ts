@@ -50,6 +50,7 @@ type DataTokenResponseType = {
   token_type: string;
   expiration_time: number;
   expires_in: number;
+  redirect_to?: string;
 };
 
 type renderLogin = (props: {

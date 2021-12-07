@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.5
+
+- [FIX] When you are in the OAuth2 flow and you want to login using a different OAuth provider, then there was a problem with the redirection to the original domain.
+
 ## 0.1.4
 
 - [Fix] Updated README with correct links

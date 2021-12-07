@@ -198,7 +198,12 @@ type webauthn = {
     name?: string;
     optionId?: string;
   }) => Promise<any>;
+  getCredentialRequestOptions: (options: { name?: string; optionId?: string }) => Promise<any>;
   sendCreatedCredential: (options: {
+    threadId: string;
+    publicKeyCredential: PublicKeyCredential;
+  }) => Promise<any>;
+  sendRequestedCredential: (options: {
     threadId: string;
     publicKeyCredential: PublicKeyCredential;
   }) => Promise<any>;

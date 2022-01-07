@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.6
+
+- [FIX] Fixed unhandled error thrown when you wanted reset your password with empty email input.
+
 ## 0.1.5
 
 - [FIX] When you are in the OAuth2 flow and you want to login using a different OAuth provider, then there was a problem with the redirection to the original domain.

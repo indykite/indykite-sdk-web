@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.7
+
+- [FIX] Minor code fixes
+- [TEST] Added unit tests
+
 ## 0.1.6
 
 - [FIX] Fixed unhandled error thrown when you wanted reset your password with empty email input.

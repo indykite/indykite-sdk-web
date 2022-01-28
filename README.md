@@ -444,7 +444,12 @@ return (
           <br />
           <button
             id={`custom-btn-oidc-${opt.prv}`}
-            onClick={() => IKUIOidc.oidcSetup(opt["@id"], "/redirectUri")}>
+            onClick={() =>
+              IKUIOidc.oidcSetup({
+                id: opt["@id"],
+                redirectUri: "/redirectUri",
+              })
+            }>
             {opt.prv}
           </button>
         </React.Fragment>
@@ -642,7 +647,13 @@ const Login = () => {
           .map((opt) => (
             <React.Fragment key={opt["@id"]}>
               <br />
-              <button onClick={() => IKUIOidc.oidcSetup(opt["@id"], "/redirectUri")}>
+              <button
+                onClick={() =>
+                  IKUIOidc.oidcSetup({
+                    id: opt["@id"],
+                    redirectUri: "/redirectUri",
+                  })
+                }>
                 {opt.prv}
               </button>
             </React.Fragment>

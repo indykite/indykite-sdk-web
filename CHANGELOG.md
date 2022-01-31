@@ -2,8 +2,14 @@
 
 ## 0.1.9
 
-- [FIX] Fixed TypeScript definition of  function
-- [DOCS] Updated  so that it reflects changes in the  function
+- [FIX] Fixed TypeScript definition of `IKUIOidc.oidcSetup` function
+- [DOCS] Updated `README.md` so that it reflects changes in the `IKUIOidc.oidcSetup` function
+
+## 0.1.8
+
+- [FIX] Fix `renderLogin` and `loginSetup` functions so that they don't try to render the login form when the page will be redirected.
+- [REFACTOR] Divide big files (index, login and reset-password.js) into multiple smaller files
+- [TEST] Add unit tests so the code coverage is above 80% level
 
 ## 0.1.7
 

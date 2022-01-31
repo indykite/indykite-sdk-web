@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.1.8
+
+- [FIX] Fix `renderLogin` and `loginSetup` functions so that they don't try to render the login form when the page will be redirected.
+- [REFACTOR] Divide big files (index, login and reset-password.js) into multiple smaller files
+- [TEST] Add unit tests so the code coverage is above 80% level
+
 ## 0.1.7
 
 - [FIX] Minor code fixes

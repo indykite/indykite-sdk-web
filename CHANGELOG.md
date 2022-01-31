@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.9
+
+- [FIX] Fixed TypeScript definition of  function
+- [DOCS] Updated  so that it reflects changes in the  function
+
 ## 0.1.7
 
 - [FIX] Minor code fixes

@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.1.9
+
+- [FIX] Fixed TypeScript definition of `IKUIOidc.oidcSetup` function
+- [DOCS] Updated `README.md` so that it reflects changes in the `IKUIOidc.oidcSetup` function
+
 ## 0.1.8
 
 - [FIX] Fix `renderLogin` and `loginSetup` functions so that they don't try to render the login form when the page will be redirected.

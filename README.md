@@ -261,7 +261,7 @@ const SetNewPassword = () => {
       //     submitButton: "Custom set new password"
       // } // Optional custom labels for slight changes, lookup localization settings for full i18n/l10n
     });
-  });
+  }, []);
 
   return (
     <div>
@@ -583,7 +583,7 @@ const Callback = () => {
         // You are logged in, and can redirect to auth routes
       })
       .catch(console.log);
-  });
+  }, []);
   return <h3>general callback</h3>;
 };
 ```
@@ -609,7 +609,7 @@ import { IKUIOidc } from "@indykiteone/jarvis-sdk-web";
 const Oidc = () => {
   React.useEffect(() => {
     IKUIOidc.handleOidcOriginalParamsAndRedirect();
-  });
+  }, []);
 
   return <h3>oidc</h3>;
 };

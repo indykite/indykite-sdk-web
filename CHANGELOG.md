@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.10](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.9...v0.1.10) (2022-02-07)
+
+
+### Bug Fixes
+
+* add release-please-config ([f6849e1](https://github.com/indykite/jarvis-sdk-web/commit/f6849e1f4c916fb76cc77346a17f3b9e496c0285))
+
 ## 0.1.9
 
 - [FIX] Fixed TypeScript definition of `IKUIOidc.oidcSetup` function

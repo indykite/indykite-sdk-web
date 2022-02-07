@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       release-type:
-        description: 'Should be one of release-major/release-minor/release-patch'
+        description: "Should be one of release-major/release-minor/release-patch"
 jobs:
   prepare-release:
     env:

@@ -18,6 +18,8 @@ jobs:
                   release-type: node
                   package-name: jarvis-sdk-web
                   default-branch: test-release-please
+                  bump-minor-pre-major: true
+                  bump-patch-for-minor-pre-major: true
             - uses: actions/checkout@v2
               if: ${{ steps.release-please.outputs.release_created }}
             - uses: actions/setup-node@v2

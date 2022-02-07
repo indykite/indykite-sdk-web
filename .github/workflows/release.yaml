@@ -1,66 +1,34 @@
 name: Release
 on:
-  workflow_dispatch:
-    inputs:
-      release-type:
-        description: "Should be one of release-major/release-minor/release-patch"
+    push:
+        branches:
+            - test-release-please
+
 jobs:
-  prepare-release:
-    env:
-      REPO_NAME: "@indykiteone/jarvis-sdk-web"
-    runs-on: ubuntu-latest
-    steps:
-      - name: Set major release
-        if: ${{ github.event.inputs.release-type == 'release-major' }}
-        run: echo "RELEASE=major" >> $GITHUB_ENV
-      - name: Set minor release
-        if: ${{ github.event.inputs.release-type == 'release-minor' }}
-        run: echo "RELEASE=minor" >> $GITHUB_ENV
-      - name: Set patch release
-        if: ${{ github.event.inputs.release-type == 'release-patch' }}
-        run: echo "RELEASE=patch" >> $GITHUB_ENV
-      - name: Check release env
-        run: |
-          if [[ -z "${{ env.RELEASE }}" ]];
-          then
-            echo "You need to set a release label on PRs to the master branch"
-            exit 1
-          else
-            exit 0
-          fi
-      - name: Checkout code
-        uses: actions/checkout@v2
-      - name: Setup git
-        run: |
-          git config --global user.name 'Github Actions'
-          git config --global user.email '${{ github.actor }}@users.noreply.github.com'
-      - name: Install Semver
-        run: |
-          wget https://raw.githubusercontent.com/fsaintjacques/semver-tool/3.2.0/src/semver
-          chmod +x semver
-      - name: Bump version
-        run: |
-          export CURRENT=$(npm show $REPO_NAME | grep latest | cut -d':' -f 2 | xargs)
-          export NEW_VERSION=$(./semver bump ${{ env.RELEASE }} $CURRENT)
-          echo "VERSION=$NEW_VERSION" >> $GITHUB_ENV
-
-      # - name: Prepare CHANGELOG
-      #   run: |
-      #     echo "${{ github.event.pull_request.body }}" | csplit -s - "/##/"
-      #     echo "# Changelog
-
-      #     ## ${{ env.VERSION }}
-      #     " >> CHANGELOG.tmp
-      #     grep "^-" xx01 >> CHANGELOG.tmp
-      #     grep -v "^# " CHANGELOG.md >> CHANGELOG.tmp
-      #     cp CHANGELOG.tmp CHANGELOG.md
-
-      - name: Prepare update
-        run: |
-          sed -i "s|\"version\": \"[^\"]*\"|\"version\": \"${{ env.VERSION }}\"|" package.json
-
-      - name: Commit changes
-        run: |
-          git add package.json 
-          git commit -m "Bump to version ${{ env.VERSION }}"
-          git push
+    release-please:
+        name: Prepare Release notes
+        runs-on: ubuntu-latest
+        outputs:
+            released: ${{ steps.release-please.outputs.release_created }}
+            pr_number: ${{ steps.echo-pr.outputs.pr_number }}
+        steps:
+            - id: release-please
+              uses: GoogleCloudPlatform/release-please-action@v3
+              with:
+                  release-type: node
+                  package-name: jarvis-sdk-web
+                  default-branch: test-release-please
+            - uses: actions/checkout@v2
+              if: ${{ steps.release-please.outputs.release_created }}
+            - uses: actions/setup-node@v2
+              with:
+                node-version: "12.x"
+                registry-url: "https://registry.npmjs.org"
+              if: ${{ steps.release-please.outputs.release_created }}
+            - run: npm install
+              if: ${{ steps.release-please.outputs.release_created }}
+            - name: "Publish the package"
+              if: ${{ steps.release-please.outputs.release_created }}
+              run: npm publish --access public
+              env:
+                NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

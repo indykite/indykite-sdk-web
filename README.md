@@ -762,6 +762,8 @@ https://medium.com/dailyjs/how-to-use-npm-link-7375b6219557
 In case you update the response don't forget to update CommonJS docs and also
 any typescript definitions.
 
+Commit message follows [commit guidelines](./doc/guides/commit-message.md#commit-message-guidelines)
+
 ### Localisation development
 
 All the messages and keys are stored in the localise.com app under project Indykite

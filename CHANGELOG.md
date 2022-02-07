@@ -1,5 +1,13 @@
 # Changelog
 
+### [0.1.2](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.1...v0.1.2) (2022-02-07)
+
+
+### Bug Fixes
+
+* fix skipIfLogged function so that it returns true only on redirection ([5afa753](https://github.com/indykite/jarvis-sdk-web/commit/5afa7534db52b30cec888e91b7c6e3b4f662f9d8))
+* update typescript definitions + update README.md ([9d3313d](https://github.com/indykite/jarvis-sdk-web/commit/9d3313ded911bcd17afe86801179f4d0c2a08ee6))
+
 ## 0.1.9
 
 - [FIX] Fixed TypeScript definition of `IKUIOidc.oidcSetup` function

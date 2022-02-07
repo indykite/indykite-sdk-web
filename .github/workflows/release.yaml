@@ -1,36 +1,40 @@
 name: Release
 on:
-    push:
-        branches:
-            - test-release-please
-
+  push:
+    branches:
+      - master
 jobs:
-    release-please:
-        name: Prepare Release notes
-        runs-on: ubuntu-latest
-        outputs:
-            released: ${{ steps.release-please.outputs.release_created }}
-            pr_number: ${{ steps.echo-pr.outputs.pr_number }}
-        steps:
-            - id: release-please
-              uses: GoogleCloudPlatform/release-please-action@v3
-              with:
-                  release-type: node
-                  package-name: jarvis-sdk-web
-                  default-branch: test-release-please
-                  bump-minor-pre-major: true
-                  bump-patch-for-minor-pre-major: true
-            - uses: actions/checkout@v2
-              if: ${{ steps.release-please.outputs.release_created }}
-            - uses: actions/setup-node@v2
-              with:
-                node-version: "12.x"
-                registry-url: "https://registry.npmjs.org"
-              if: ${{ steps.release-please.outputs.release_created }}
-            - run: npm install
-              if: ${{ steps.release-please.outputs.release_created }}
-            - name: "Publish the package"
-              if: ${{ steps.release-please.outputs.release_created }}
-              run: npm publish --access public
-              env:
-                NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+  release-please:
+    name: Prepare Release notes
+    runs-on: ubuntu-latest
+    outputs:
+      released: ${{ steps.release-please.outputs.release_created }}
+      pr_number: ${{ steps.echo-pr.outputs.pr_number }}
+    steps:
+      - id: release-please
+        uses: GoogleCloudPlatform/release-please-action@v3
+        with:
+          release-type: node
+          package-name: jarvis-sdk-web
+          bump-minor-pre-major: true
+          bump-patch-for-minor-pre-major: true
+      - uses: actions/checkout@v2
+        if: ${{ steps.release-please.outputs.release_created }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "12.x"
+          registry-url: "https://registry.npmjs.org"
+        if: ${{ steps.release-please.outputs.release_created }}
+      - run: npm install
+        if: ${{ steps.release-please.outputs.release_created }}
+      - name: "Build the dist package"
+        run: npm run-script build
+        if: ${{ steps.release-please.outputs.release_created }}
+      - name: "Verify es support of dist package"
+        run: npm run-script check-es
+        if: ${{ steps.release-please.outputs.release_created }}
+      - name: "Publish the package"
+        if: ${{ steps.release-please.outputs.release_created }}
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

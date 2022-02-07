@@ -27,9 +27,9 @@ jobs:
         uses: actions/checkout@master
       - name: Install
         run: npm install
-      - name: Run Tests
-        uses: artiomtr/jest-coverage-report-action@v2.0-rc.4
+      - name: Run test coverage
+        run: npm run coverage-ci
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          threshold: 0
-          annotations: failed-tests
+          files: coverage/clover.xml

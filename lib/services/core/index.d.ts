@@ -26,6 +26,7 @@ type onRenderComponent =
       defaultComponent: HTMLElement,
       componentType: "form",
       formComponentType: "submit",
+      handleClick: () => Promise<void>,
       label: string,
     ) => HTMLElement | undefined)
   | ((
@@ -38,6 +39,7 @@ type onRenderComponent =
       defaultComponent: HTMLElement,
       componentType: "oidcButton",
       provider: string,
+      handleClick: () => Promise<void>,
       id: string,
       url: string,
     ) => HTMLElement | undefined)

@@ -1,5 +1,17 @@
 # Changelog
 
+### [0.1.10](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.9...v0.1.10) (2022-02-09)
+
+### Features
+
+- display error on problems during rendering ([3116482](https://github.com/indykite/jarvis-sdk-web/commit/311648207e8eab80d5be06a1957dcfa63da64da5))
+- `IKUICore.renderLogin` accepts `onLoginFail` property
+- `IKUICore.renderRegister` accepts `onRegistrationFail` property
+
+### Bug Fixes
+
+- update es-check package ([336f50e](https://github.com/indykite/jarvis-sdk-web/commit/336f50e317830e1cad03d22b66cc73af65a161f2))
+
 ## 0.1.9
 
 - [FIX] Fixed TypeScript definition of `IKUIOidc.oidcSetup` function

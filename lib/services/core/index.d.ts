@@ -55,6 +55,7 @@ type DataTokenResponseType = {
 
 type renderLogin = (props: {
   renderElementSelector: string;
+  onLoginFail?: (error: Error) => void;
   onRenderComponent?: onRenderComponent;
   onSuccessLogin: (arg0: DataTokenResponseType) => void;
   redirectUri?: string;
@@ -75,6 +76,7 @@ type renderLogin = (props: {
 
 type renderRegister = (props: {
   renderElementSelector: string;
+  onRegistrationFail?: (error: Error) => void;
   onRenderComponent?: onRenderComponent;
   onSuccessRegistration: (arg0: DataTokenResponseType) => void;
   redirectUri?: string;

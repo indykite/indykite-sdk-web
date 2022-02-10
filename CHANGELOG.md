@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.11](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.10...v0.1.11) (2022-02-10)
+
+
+### Bug Fixes
+
+* **api:** handle click with custom components ([177beea](https://github.com/indykite/jarvis-sdk-web/commit/177beeab65a9ac82b96da6f7113bbf53feae1f1e))
+
 ### [0.1.10](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.9...v0.1.10) (2022-02-09)
 
 ### Features

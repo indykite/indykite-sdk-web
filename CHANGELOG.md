@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.12](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.11...v0.1.12) (2022-02-10)
+
+
+### Bug Fixes
+
+* do not check changelog formatting ([88ff55a](https://github.com/indykite/jarvis-sdk-web/commit/88ff55a60787806469c5104fa294b4f82597606e))
+
 ### [0.1.11](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.10...v0.1.11) (2022-02-10)
 
 

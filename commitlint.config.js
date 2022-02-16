@@ -43,7 +43,7 @@ module.exports = {
         "test",
         "master",
         "examples",
-        "deps"
+        "deps",
       ],
     ],
   },

@@ -764,6 +764,9 @@ any typescript definitions.
 
 Commit message follows [commit guidelines](./doc/guides/commit-message.md#commit-message-guidelines)
 
+Install husky pre-commit hooks
+`npm install & npm run prepare`
+
 ### Localisation development
 
 All the messages and keys are stored in the localise.com app under project Indykite

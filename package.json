@@ -17,6 +17,7 @@
     "coverage": "jest --coverage",
     "coverage-ci": "jest --ci --silent --coverage --coverageReporters=clover",
     "coverage-html": "jest --coverage --silent --coverageReporters=html",
+    "prepare": "husky install",
     "prepublishOnly": "npm run clean && npm run build"
   },
   "keywords": [
@@ -43,10 +44,14 @@
     "node-polyfill-webpack-plugin": "^1.1.4",
     "@babel/core": "^7.14.8",
     "@babel/preset-env": "^7.14.8",
+    "@commitlint/cli": "^16.1.0",
+    "@commitlint/config-conventional": "^16.0.0",
     "@types/jest": "^27.4.0",
     "babel-loader": "^8.2.2",
     "es-check": "^6.2.1",
+    "husky": "^7.0.4",
     "jest": "^27.0.6",
+    "lint-staged": "^10.4.0",
     "prettier": "2.2.1",
     "rimraf": "^2.7.1",
     "webpack": "^5.47.0",

@@ -395,6 +395,10 @@ console.log(data.expiration_time); // Timestamp
 console.log(data.expires_in); // In x seconds
 ```
 
+> If a user was invited to your system and he has a reference ID from his invitation email, you should pass the reference ID to
+> the loginSetup function (`IKUIUserAPI.loginSetup({ otpToken: "referenceID" })`) so that the application is able to connect
+> the logged in user with the invited one.
+
 #### Register `IKUIUserAPI.register("username", "Passwd")`
 
 Calling this function with valid username and password parameters returns promise which is resolved and returns access tokens or rejected and returns error info.
@@ -458,6 +462,10 @@ return (
   </div>
 );
 ```
+
+> If a user was invited to your system and he has a reference ID from his invitation email, you should pass the reference ID to
+> the registerSetup function (`IKUIUserAPI.registerSetup({ otpToken: "referenceID" })`) so that the application is able to connect
+> the registered user with the invited one.
 
 #### ~~Logout the user `IKUIUserAPI.logoutCurrentUser()`~~
 

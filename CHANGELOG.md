@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.12](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.11...v0.1.12) (2022-02-17)
+
+
+### Features
+
+* **auth:** allow to login with otp token ([5abb342](https://github.com/indykite/jarvis-sdk-web/commit/5abb342565f90f5e42bc999123d189dfccf0fa60))
+
 ### [0.1.11](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.10...v0.1.11) (2022-02-10)
 
 

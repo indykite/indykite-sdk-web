@@ -191,8 +191,11 @@ type sendNewPassword = (
   newPassword: string,
 ) => Promise<DataTokenResponseType>;
 
-type loginSetup = () => Promise<LoginSetupDataType>;
-type registerSetup = () => Promise<LoginSetupDataType>;
+type setupRequestConfig = {
+  otpToken?: string;
+};
+type loginSetup = (config?: setupRequestConfig) => Promise<LoginSetupDataType>;
+type registerSetup = (config?: setupRequestConfig) => Promise<LoginSetupDataType>;
 
 interface IKUIUserAPI {
   isAuthenticated: isAuthenticated;

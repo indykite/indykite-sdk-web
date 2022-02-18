@@ -15,7 +15,7 @@
     "build": "webpack",
     "check-es": "es-check es6 ./dist/*.js --verbose",
     "coverage": "jest --coverage",
-    "coverage-ci": "jest --ci --silent --coverage --coverageReporters=clover",
+    "coverage-ci": "jest --ci --silent --coverage --coverageReporters=json",
     "coverage-html": "jest --coverage --silent --coverageReporters=html",
     "prepare": "husky install",
     "prepublishOnly": "npm run clean && npm run build"

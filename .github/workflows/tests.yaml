@@ -34,5 +34,3 @@ jobs:
         run: npm run coverage-ci
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
-        with:
-          files: coverage/clover.xml

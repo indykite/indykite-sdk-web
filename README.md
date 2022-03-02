@@ -355,19 +355,23 @@ There are 2 ways to achieve login
 
 #### 1. One Step Login `IKUIUserAPI.login("username", "Password")`
 
-Calling this function with valid username and password parameters returns promise which is resolved and returns access tokens or rejected and returns error info.
+This function is suitable only if your authentication flow is simple and requires username and password only. Calling this function with valid username and password parameters returns a promise which is either resolved and returns access tokens or rejected and returns error info.
 
 ```javascript
 import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
 
 IKUIUserAPI.login("valid@username.com", "Validpassword")
   .then((data) => {
-    console.log(data["@type"]);
-    console.log(data.token);
-    console.log(data.refresh_token);
-    console.log(data.token_type); // For example "bearer"
-    console.log(data.expiration_time); // Timestamp
-    console.log(data.expires_in); // In x seconds
+    if (data["@type"] === "success") {
+      console.log(data["@type"]);
+      console.log(data.token);
+      console.log(data.refresh_token);
+      console.log(data.token_type); // For example "bearer"
+      console.log(data.expiration_time); // Timestamp
+      console.log(data.expires_in); // In x seconds
+    } else if (data["@type"] === "oidc") {
+      IKUIOidc.oidcSetup(data);
+    }
   })
   .catch((err) => {
     console.log(err["@type"]);
@@ -380,7 +384,7 @@ IKUIUserAPI.login("valid@username.com", "Validpassword")
 
 This flow consist of calling `IKUIUserAPI.loginSetup()` which returns also UI config response from the server.
 It also checks for any redirects in case of flow with OIDC and in case the user is already logs in - automatically
-does redirect to the requested url.You can explore this response in case you would like to also configure your UI based on the response.
+does redirect to the requested url. You can explore this response in case you would like to also configure your UI based on the response.
 The Response from the login is than used in login function `IKUIUserAPI.login("username", "Passwd", responseFromSetup)`
 
 ```javascript
@@ -393,11 +397,15 @@ const responseConfig = await IKUIUserAPI.loginSetup();
 const data = await IKUIUserAPI.login("userName", "Password", responseConfig);
 
 console.log(data["@type"]);
-console.log(data.token);
-console.log(data.refresh_token);
-console.log(data.token_type); // For example "bearer"
-console.log(data.expiration_time); // Timestamp
-console.log(data.expires_in); // In x seconds
+if (data["@type"] === "success") {
+  console.log(data.token);
+  console.log(data.refresh_token);
+  console.log(data.token_type); // For example "bearer"
+  console.log(data.expiration_time); // Timestamp
+  console.log(data.expires_in); // In x seconds
+} else if (data["@type"] === "oidc") {
+  IKUIOidc.oidcSetup(data);
+}
 ```
 
 > If a user was invited to your system and he has a reference ID from his invitation email, you should pass the reference ID to
@@ -406,7 +414,7 @@ console.log(data.expires_in); // In x seconds
 
 #### Register `IKUIUserAPI.register("username", "Passwd")`
 
-Calling this function with valid username and password parameters returns promise which is resolved and returns access tokens or rejected and returns error info.
+This function is suitable only if your authentication flow is simple and requires username and password only (theoretically the flow might require you to use an OIDC provider in the next step). Calling this function with valid username and password parameters returns a promise which is either resolved and returns access tokens or rejected and returns error info.
 
 ```javascript
 import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
@@ -429,7 +437,7 @@ IKUIUserAPI.register("valid@username.com", "Validpassword")
 
 #### Register Setup `IKUIUserAPI.registerSetup()`
 
-Is optional function which returns you the setup object where you can find the configured register options.
+This is an optional function which returns you the setup object where you can find the configured register options.
 It's useful when you want to dynamically show the register options buttons, for example the OIDC providers
 (Google, Facebook...), however it's NOT necessary to be called / used for any other reason.
 
@@ -448,7 +456,7 @@ useEffect(() => {
 return (
   <div>
     {registerOpts
-      ?.filter((opt) => opt.prv)
+      ?.filter((opt) => opt["@type"] === "oidc")
       .map((opt) => (
         <React.Fragment key={opt["@id"]}>
           <br />
@@ -578,7 +586,9 @@ follow the flow described below:
 
 Have this function called on a route to which you are redirected after successful login with e.g Facebook or Google.
 `IKUIOidc.oidcCallback()` can then gets query string params given by the identity provider, and those are sent to
-server. After that SDK sends verifier and receives token which is stored in the SDK and returned by the function.
+server. After that SDK sends verifier and receives token which is stored in the SDK and returned by the function. Anyway,
+you might be requested to be redirected to a different URL. In that case `data.redirect_to` property will be defined and you
+should redirect your page to the specified URL.
 
 ```javascript
 import React from "react";
@@ -588,6 +598,10 @@ const Callback = () => {
   React.useEffect(() => {
     IKUIOidc.oidcCallback()
       .then((data) => {
+        if (data.redirect_to) {
+          window.location.href = data.redirect_to;
+          return;
+        }
         console.log(data.token);
         console.log(data.refresh_token);
         console.log(data.token_type); // For example "bearer"
@@ -608,7 +622,9 @@ follow the flow described below:
 1. Init library (described above)
 2. Create /login route and Login component using our exposed function or our built-in UI (render UI functions) to your app (described above)
 3. Create /registration route and Registration component using our exposed function or our built-in UI (render UI functions) to your app (described above)
-4. Have a /login/callback route calling `IKUIOidc.handleOidcOriginalParamsAndRedirect()`
+4. Have a /login/oauth2 route calling `IKUIOidc.handleOidcOriginalParamsAndRedirect()`
+
+> The access tokens don't need to be returned immediately if your authentication flow contains a linking flow. See the "Linking flow" section for more details.
 
 ### Handle oidc original parameters and redirect `IKUIOidc.handleOidcOriginalParamsAndRedirect()`
 
@@ -631,7 +647,7 @@ const Oidc = () => {
 
 ### Oidc setup `IKUIOidc.oidcSetup()`
 
-This function is only relevant to you if you are using login flow of type "logical" and your `IKUIUserAPI.loginSetup ()` response includes opts of type "oidc". Call this function with "@id" of specific oidc action you want to make.
+If your login flow has type of `logical` and your `IKUIUserAPI.loginSetup()` response includes opts of type `oidc`, you will need to pass the option id to this function along with `redirectUri` address. If your flow has the `oidc` type and the response has no id, you can use `null` as the id in this function.
 Please see example of React component using this function below.
 
 ```javascript
@@ -679,7 +695,7 @@ const Login = () => {
 
 ### Single OIDC setup `IKUIOidc.singleOidcSetup(loginSetupResponseData)`
 
-This function is only relevant to you if you are receiving response of type "oidc" from `IKUIUserAPI.loginSetup ()`. If that is the case, call this function with the response as an argument and SDK will redirect you to your
+This function is only relevant to you if you are receiving response of type "oidc" from `IKUIUserAPI.loginSetup()`. If that is the case, call this function with the response as an argument and SDK will redirect you to your
 identity provider with required parameters. Please see example of React component using this function below.
 
 ```javascript
@@ -714,6 +730,23 @@ const Login = () => {
       )}
     </div>
   );
+};
+```
+
+## Linking flow
+
+The authentication flow may be configured in a way that it will require you to firstly login with a username and a password and after that you will need to login with an google account as well. This is called "linking flow". In case you're using `IKUICore.renderLogin` or `IKUICore.renderRegister` function, you don't need to think about this and the SDK will handle the screens for you automatically. Anyway, if you are using `IKUIUserAPI.loginSetup`, `IKUIUserAPI.registerSetup` or `IKUIOidc.oidcSetup` function and you render screens on your own, you will need to keep on mind that the first response message after the login doesn't need to be the `verifier` type. The message type may also be `logical`, `oidc` or `form` (in the future there might be also different types). In this case you will need to combine `IKUIUserAPI.loginSetup`, `IKUIUserAPI.registerSetup` and `IKUIOidc.oidcSetup` functions to continue through the flow.
+
+```javascript
+const login = async () => {
+  const response = await IKUIUserAPI.login(email, password);
+  if (response["@type"] === "success") {
+    processTokens(response);
+  } else if (response["@type"] === "oidc") {
+    IKUIOidc.oidcSetup({
+      redirectUri: "http://localhost:3000/callback",
+    });
+  }
 };
 ```
 

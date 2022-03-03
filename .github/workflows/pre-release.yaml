@@ -1,0 +1,36 @@
+name: Pre-Release
+on:
+  pull_request:
+    types:
+      - labeled
+jobs:
+  pre-release:
+    if: ${{ github.event.label.name == 'alpha' }}
+    name: Prepare Alpha Pre-release
+    runs-on: ubuntu-latest
+    outputs:
+      released: ${{ steps.release-please.outputs.release_created }}
+      pr_number: ${{ steps.echo-pr.outputs.pr_number }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: "12.x"
+          registry-url: "https://registry.npmjs.org"
+      - run: |
+          npm install
+          SHORT_SHA="$(git rev-parse --short HEAD)"
+          VERSION="$(cat package.json | jq -r '.version')"
+          NEXT_VERSION="$(npx semver $VERSION -i patch)-alpha-$SHORT_SHA"
+          git config --global user.email "releaser@indykite.com"
+          git config --global user.name "Release bot"
+          npm version "$NEXT_VERSION"
+      - name: "Build the dist package"
+        run: npm run-script build
+      - name: "Verify es support of dist package"
+        run: npm run-script check-es
+
+      - name: "Publish the package"
+        run: npm publish --access public --tag alpha
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -109,6 +109,45 @@ type renderRegister = (props: {
   passwordCheckInputNote?: string;
 }) => void;
 
+type render = (props: {
+  arguments?: Record<string, string>;
+  renderElementSelector: string;
+  onFail?: (error: Error) => void;
+  onRenderComponent?: onRenderComponent;
+  onSuccess: (arg0: DataTokenResponseType) => void;
+  redirectUri?: string;
+  registrationPath?: string;
+  forgotPasswordPath?: string;
+  labels?: {
+    username?: string;
+    password?: string;
+    confirmPassword?: string;
+    registerButton?: string;
+    registerLinkButton?: string;
+    alreadyHaveAnAccountButton?: string;
+    orOtherOptions?: string;
+    loginButton?: string;
+    forgotPasswordButton?: string;
+  };
+  loginApp?: {
+    [optionId: string]: string;
+  };
+  termsAgreementSectionContent?: string;
+  validatePassword?: (arg0: string) => boolean;
+  /**
+   * This is a temporary configuration only. Keep on mind that this property will be removed in the future.
+   */
+  userInputNote?: string;
+  /**
+   * This is a temporary configuration only. Keep on mind that this property will be removed in the future.
+   */
+  passwordInputNote?: string;
+  /**
+   * This is a temporary configuration only. Keep on mind that this property will be removed in the future.
+   */
+  passwordCheckInputNote?: string;
+}) => void;
+
 type renderForgotPasswordForm = (props: {
   renderElementSelector: string;
   loginPath?: string;
@@ -131,8 +170,15 @@ type renderSetNewPasswordForm = (props: {
 }) => void;
 
 interface IKUICore {
+  /**
+   * @deprecated Use `render` function instead.
+   */
   renderLogin: renderLogin;
+  /**
+   * @deprecated Use `render` function instead.
+   */
   renderRegister: renderRegister;
+  render: render;
   renderForgotPasswordForm: renderForgotPasswordForm;
   renderSetNewPasswordForm: renderSetNewPasswordForm;
 }

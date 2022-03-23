@@ -18,7 +18,7 @@ type onRenderComponent =
   | ((
       defaultComponent: HTMLElement,
       componentType: "form",
-      formComponentType: "username" | "password" | "passwordCheck",
+      formComponentType: "username" | "email" | "password" | "passwordCheck",
       label: string,
       context: any,
     ) => HTMLElement | undefined)
@@ -116,10 +116,21 @@ type render = (props: {
   onRenderComponent?: onRenderComponent;
   onSuccess: (arg0: DataTokenResponseType) => void;
   redirectUri?: string;
+  /**
+   * @deprecated Page route should not be changed during the authentication flow
+   */
+  loginPath?: string;
+  /**
+   * @deprecated Page route should not be changed during the authentication flow
+   */
   registrationPath?: string;
+  /**
+   * @deprecated Page route should not be changed during the authentication flow
+   */
   forgotPasswordPath?: string;
   labels?: {
     username?: string;
+    email?: string;
     password?: string;
     confirmPassword?: string;
     registerButton?: string;
@@ -128,6 +139,7 @@ type render = (props: {
     orOtherOptions?: string;
     loginButton?: string;
     forgotPasswordButton?: string;
+    forgottenPasswordSubmitButton?: string;
   };
   loginApp?: {
     [optionId: string]: string;

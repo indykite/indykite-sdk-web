@@ -116,17 +116,8 @@ type render = (props: {
   onRenderComponent?: onRenderComponent;
   onSuccess: (arg0: DataTokenResponseType) => void;
   redirectUri?: string;
-  /**
-   * @deprecated Page route should not be changed during the authentication flow
-   */
   loginPath?: string;
-  /**
-   * @deprecated Page route should not be changed during the authentication flow
-   */
   registrationPath?: string;
-  /**
-   * @deprecated Page route should not be changed during the authentication flow
-   */
   forgotPasswordPath?: string;
   labels?: {
     username?: string;

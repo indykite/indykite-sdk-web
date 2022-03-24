@@ -1,0 +1,85 @@
+{
+  "~thread": {
+    "thid": "qGgqTsxznoAk6cLWn73gra94Wjv3pdRLSDXpKyWHbTHZfi3x8xK9YfGsEog8xy3xhSN76sL1bJMNToAebMvbEc8kxR6wmiUaosNhB1JDcYLgzwo6iGQdzvrujA1YLpsUqjMBWKa5CaCSK6F5Yo2CXZzLApwvn6RwhmQhWS2TfunQ8qRhpBjTmpVLuq3Yz6UEAwg48a7sKK9kh9j9xweHshTQQ2bW2rZzezW3H37uReVB2RGmBuZuWZHxS5h9RxygM6YqSxfJVCcASweb33kK6bawAwuGoHeeANMRD541sfQHJWjJbuhRnbAR2R4Doyxm8FzyGG1KXpohqGqYNJVUqBxApmiT3qbhZgbxGbJ6ydVP8pz7z8Jopyk1qdMGDuk1S8MMyGHpth75tYBqtiTYfw425WVSwgQmrszrY8dowtLQ65kC7NSVZempLLAWgtcWCM7VjmQCKHbkNRHWw6EEU9eAfvPtRDrWeH71zGV1rEJRG2DbAR8tahEkWzjfKaPgDs1XkSkR9KZXK7MSzh5VgnEqC84ch4DatYc9JE9bgk1etxbNyoiJpcGResb2MpYyqToYQC76dKH8yCE4KMbprPpJP6xYQagfSSpnHTrbKq1sa1AdRzBNhXQPdwxm4nvtDnWgZvpUg9kkkDxe4mgwAnR5szHJGqmTPrYoXev61uWRacv9ukJUY3KbTxb54dceCMmHTHSnsAoGXop77dX2sq9swJmL92PykVv8vUasMRBgeCQcnfuHPWScFZ9AjCkJqXf4ogwNk2vnDWPvdFEZHUWu3x34BfC4w4ayrYffxeu3tZkvSQPQaNZ4puY7vRwNhKdSrqeuTAx8nwp4FqUoZozJzWYwX7SZ34WpeCNEpVpEEwPVjqkV8xP2LYYhdS8u4rdpBPZE5bBPnmcmyD9qWYwRHqYHyTWPKacyxeF2VHaXiDgzBKb9Y4WFv4uv4f7QQYjRdrwyTE3tNyS44uqwHguReMjjys2196oTfftUxtJJBJbXyRDmT7kdUvG2ngdRmDBdwMbSRUPJNS5sCqTQBhnfLXwuJHEN1FMa8D1Wyi6vz4Xx5FbjLjZPmo1QPJF643JJZgNm4cxsSFV7fRxn1y7nqqC4a9xRW1xLD6sSF7jgxiotu85EbtDHJmXj7ALhB2oc4dY9TcgwcUHiKKnyUJrdiMoReYHTJFs2st6pa4DkjCNay2TyNhEjS7jJJPoHiG47qSv1F8XqWrNjpo2YvtHyQuJtogC2vGTjzvn2pe5PYvomjF2V96xDt1YN7LojkrBTR1xraF3UU9dXjoG6sTpovf2n6SQSiC8oCwvriytQkP1oQ7efxfKeQaBVxQ86eNMNUnzcxxnsJuuXhrxKK2Y9tH6aRaUSZKzrPGCq9p6gzLL1kawxg6DwnRn1gZ1K4BwU77NBk3TQtum4eN669fhx9CocRb5GB4rCRk76iFFJP3yy34trPen7414WvnZenBybR4Vijpc7rdNqVWC2rbP9S1yh4z7MjDwPEFqvWKU23J4xiz2A5EtgDR7VRDJuD4o3vw34zR7gg6qGsEnqhFXrAJxshdeQL2Ts3BRzHaAgozcLPpfxspzcTfHE4JuQRJScNCa8"
+  },
+  "@type": "logical",
+  "op": "or",
+  "opts": [
+    {
+      "~ord": 0,
+      "@type": "oidc",
+      "prv": "google.com",
+      "@id": "00000000-0000-4040-8000-005000000000"
+    },
+    {
+      "~ord": 1,
+      "@type": "oidc",
+      "prv": "facebook.com",
+      "@id": "00000000-0000-4040-8000-005100000000"
+    },
+    {
+      "~ord": 2,
+      "@type": "oidc",
+      "prv": "microsoft.com",
+      "@id": "00000000-0000-4040-8000-005200000000"
+    },
+    {
+      "~ord": 3,
+      "@type": "oidc",
+      "prv": "linkedin.com",
+      "@id": "00000000-0000-4040-8000-005300000000"
+    },
+    {
+      "~ord": 4,
+      "@type": "oidc",
+      "prv": "indykite.id",
+      "name": "slugworth",
+      "@id": "00000000-0000-4040-8000-005600000000"
+    },
+    {
+      "~ord": 5,
+      "@type": "oidc",
+      "prv": "indykite.me",
+      "@id": "00000000-0000-4040-8000-005700000000"
+    },
+    {
+      "~ord": 6,
+      "@type": "form",
+      "~ui": "passwordCreate#default",
+      "@id": "00000000-0000-4040-8000-005400000000",
+      "fields": [
+        {
+          "~ord": 0,
+          "@type": "input",
+          "@id": "username",
+          "hint": "email",
+          "autocomplete": true,
+          "maxlength": 128,
+          "minlength": 8,
+          "pattern": "^.{8,128}$",
+          "placeholder": "username",
+          "required": true
+        },
+        {
+          "~ord": 1,
+          "@type": "input",
+          "@id": "password",
+          "hint": "password",
+          "autocomplete": true,
+          "maxlength": 128,
+          "minlength": 8,
+          "pattern": "^.{8,128}$",
+          "placeholder": "password",
+          "required": true
+        }
+      ]
+    },
+    {
+      "~ord": 7,
+      "@type": "action",
+      "~ui": "action#default",
+      "@id": "00000000-1474-4762-9062-530400000000",
+      "opts": [{ "~ord": 0, "hint": "login", "locale_key": "LC_LOGIN", "icon": "login" }]
+    }
+  ]
+}

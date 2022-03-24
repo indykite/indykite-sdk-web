@@ -1,0 +1,104 @@
+{
+  "~thread": {
+    "thid": "6YavApvPY7L6CZiTk9PHufr1qnf7auQB23Yn2iJQpz2zSaujLViCySHKr41r14L9FR2h5cPmcP51wcPM1q7AVytuPmvpWi3RVFX2wEL8xJJk5xXSwHwABqj1c1x26F12arMwc6QVsFwiFkM6a2ZdS73AJycNGbErVPDSArMTVd787f16G3TPr5xr14N3wBucTXqLU2CpgXBL9uSSAvbmGbEA1Y1A8yyy78HYJqycZA5UyBkL4pwD2TW7vq3HgLytgfajS9Nx7dfRim2dWkwwwkUqkynLtftTuLKG3wm8Xct7Gfh5LwVvPiUAw5Xo38x8BRCFZUNKFDNEfNT4v82X23yyYEXRaKqQryN9V5FwwUiEcEz6GarmAH6xxsinj7oDZ4EiNGx7Jtc8Hx1GeW94Wx2ZKZjM8s1RN9475Mt4rWM16UvE7egK8JmaDFM2ZQcQhL4NiZDbJ4967Tn3eKCV22PJdJqaxgoiSrym1jHnNgYMhDCVTWjDyJHZpDWrx6xPevLD7dnB3uwh92K6acR9b2PwmWUNgJMhGFLA1rcWSz8Cexd2CHPKeD729SK9hkEUj1k6XUvLzj3xsHprNU7gzpByiBCMQfEnJeTzZfz9ChYDxNGUjffVrDRaVdMX9Aq2gGwXjXhyyqQqT3Av8doJXvS5AAGVNEGCumact99N4uzG2VyQibivr5BfE3QsHf5VbipA7VCjWdtF9DjfNNTjRvSv8EN12rb9kcMpSc3RLEbBUqa7NMyotshuPtgessj4nM3hdv2j7VQMtnsJ3Wo54j2hDLrXmhTXEFyAWwchwHgW9pcp23P2v46x5XvAxDEwP1HwUa7tdVtswG9aVuPwYt4KPkJnZMqTB2ZifD6yxByQ3gmY3T62EgcYvf3DA3R6eguK72jFVC9sdPSDus3dFzuprRspFgGm9JJ5NpZFvV2hYVVvJUsEMhgKNBHTK5LiwpiY9DXACHDBFD2KjbUFHKqZyqCCFenPBVEvQQxmC9wcuVh96xNCXDKNh99sr5qHVYKU1zS7DYfGFhZrRkWU9bxyusA5mACtqJyjJHtgqTgpUwU5dP42b5AEb4KxehFZVFAo3HCN5NkH6c97KoyjmKPdzERDYWwKVghAiwuj35mZnbru856i5tfTuw5wKDoTe56DwysELtnGnwdX7pksBY6qiBvxToQb3cyRwXzLP4w3c6E7KyQcb82esGvREmMaGvcjCRVevz38xgqVx1w3A38K6oYY2T5aMC4bWzsAzdEGejcduGTpRNfQvwKY1xt3QYHyCiBCHM5sJT2bk8otAMwfPAZKebPCdLJz37Lm9SRVAjVcYTdV6GoCjSQFSUw3YSsVnXjz41Hf7RqWSnKtaMiUfmxS7emjj5VuZHfSGjASU1oKEFEEUbGdy6DXkx5GgCUweMRy12hMXK46KVK1SQExPE5hwVJBLqFbcU7rki7hHPPMNGNuxSm7mCkYpvx6TqaqwpbctR2MwY8qWbtN5GFQZpB3utK2wDgAzaqBLoL5qxdt5hyGcdr7t4QisGrf1HUo8yYBNh3fnHAi693FwzwKQK4QEJEqQEjPpFAc2hV89M3Qp2z6idhTNsvUwRmSESGWhwDsqAecYYwSh75cKkS2Y9ppyeYWRKU2mHYboSJSQR5LThbzHZeehKHZQQjkD82AtDedk66agJQM2NRBgc5MvAMPjNmjZTFYP4docnP5MN9fQX91V7poaieHrraX7QSBR8SwH1sQ3TJCSumPgPP8RwL4wnY2rbk3dw2A5TZ6zFKHZ6g6M8bTRBwUV3qWm9NN6MAWtLVUyMT8ynutYrf51oW8Cq2huXhYV64Ag7UQcQTzyGKEkEGpT7tsUB6YKQ7cep3KyDE7HCyt1AEGDJ74S1AXwhLdQZE6SJRxv8AFsPmwHMjo6rPifxYT49tgz7so"
+  },
+  "@type": "logical",
+  "op": "or",
+  "opts": [
+    {
+      "~ord": 0,
+      "@type": "oidc",
+      "prv": "google.com",
+      "@id": "00000000-0000-4020-8000-003000000000"
+    },
+    {
+      "~ord": 1,
+      "@type": "oidc",
+      "prv": "facebook.com",
+      "@id": "00000000-0000-4020-8000-003100000000"
+    },
+    {
+      "~ord": 2,
+      "@type": "oidc",
+      "prv": "microsoft.com",
+      "@id": "00000000-0000-4020-8000-003200000000"
+    },
+    {
+      "~ord": 3,
+      "@type": "oidc",
+      "prv": "linkedin.com",
+      "@id": "00000000-0000-4020-8000-003300000000"
+    },
+    {
+      "~ord": 4,
+      "@type": "oidc",
+      "prv": "indykite.id",
+      "name": "slugworth",
+      "@id": "00000000-0000-4020-8000-003900000000"
+    },
+    {
+      "~ord": 5,
+      "@type": "oidc",
+      "prv": "indykite.me",
+      "@id": "00000000-0000-4020-8000-013000000000"
+    },
+    {
+      "~ord": 6,
+      "@type": "form",
+      "~ui": "password#default",
+      "@id": "00000000-0000-4020-8000-003400000000",
+      "fields": [
+        {
+          "~ord": 0,
+          "@type": "input",
+          "@id": "username",
+          "hint": "email",
+          "autocomplete": true,
+          "maxlength": 128,
+          "minlength": 8,
+          "pattern": "^.{8,128}$",
+          "placeholder": "username",
+          "required": true
+        },
+        {
+          "~ord": 1,
+          "@type": "input",
+          "@id": "password",
+          "hint": "password",
+          "autocomplete": true,
+          "maxlength": 128,
+          "minlength": 8,
+          "pattern": "^.{8,128}$",
+          "placeholder": "password",
+          "required": true
+        }
+      ]
+    },
+    {
+      "~ord": 7,
+      "@type": "webauthn",
+      "@id": "00000000-0000-4020-8000-003500000000",
+      "publicKey": {
+        "challenge": "U3HBcx-DipAOlhIMCs91kUdgGS-CvuIMyrS5TEcfFjw",
+        "timeout": 300000,
+        "rpId": "wonka-dev.demo.indykite.com",
+        "userVerification": "preferred"
+      }
+    },
+    {
+      "~ord": 8,
+      "@type": "action",
+      "~ui": "action#default",
+      "@id": "00000000-0000-4020-8000-003600000000",
+      "opts": [
+        { "~ord": 0, "hint": "register", "locale_key": "I18N_REGISTER", "icon": "register" },
+        {
+          "~ord": 1,
+          "hint": "forgotten",
+          "locale_key": "I18N_FORGOTTEN_PASSWORD",
+          "icon": "forgotten"
+        }
+      ]
+    }
+  ]
+}

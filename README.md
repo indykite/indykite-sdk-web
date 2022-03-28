@@ -119,7 +119,7 @@ import { IKUICore } from "@indykiteone/jarvis-sdk-web";
 const Login = () => {
   // React example, call only during the first render. Side effect!
   React.useEffect(() => {
-    IKUICore.renderLogin({
+    IKUICore.render({
       renderElementSelector: "#login-container",
       onSuccessLogin: (data) => {
         console.log(data.token);
@@ -129,13 +129,13 @@ const Login = () => {
         console.log(data.expires_in); // In x seconds
       },
       redirectUri: "/callback", // Optional - Needed only if you use OIDC (Google, FB etc) login buttons
-      registrationPath: "/registration", // Optional - In case you want different one
-      forgotPasswordPath: "/forgot/password", // Optional - In case you want different one
+      registrationPath: "/registration",
+      forgotPasswordPath: "/forgot/password",
       labels: {
         username: "Custom Username",
         password: "Custom Password",
         loginButton: "Custom Login with us!",
-        registerButton: "Custom Register",
+        registerLinkButton: "Custom Register",
         forgotPasswordButton: "custom Forgot Password",
       }, // Optional custom labels for slight changes, lookup localization settings for full i18n/l10n
       // If you setup custom labels - they overwrite the localization settings
@@ -170,7 +170,11 @@ const Registration = () => {
 
   // React example, call only during the first render. Side effect!
   React.useEffect(() => {
-    IKUICore.renderRegister({
+    IKUICore.render({
+      // Optional - You can specify your custom arguments and use them in the switch node in the authentication flow builder (on indykite.id site)
+      arguments: {
+        flow: "register",
+      },
       renderElementSelector: "#register-container",
       termsAgreementSectionContent: htmlString,
       onSuccessRegistration: (data) => {
@@ -181,6 +185,7 @@ const Registration = () => {
         console.log(data.expires_in); // In x seconds
       },
       redirectUri: "/callback", // Optional - needed only if you use OIDC (Google, FB etc) register buttons
+      loginPath: "/login",
       labels: {
         username: "Custom Username",
         password: "Custom Password",
@@ -214,7 +219,7 @@ const Registration = () => {
 
 ##### Forgot password element:
 
-On `<base_app_uri>/forgot/password` path or path of your liking (must be same as in param `forgotPasswordPath` in function `renderLogin`) do
+On `<base_app_uri>/forgot/password` path or path of your liking (must be same as in param `forgotPasswordPath` in function `render`) do
 
 ```javascript
 import { IKUICore } from "@indykiteone/jarvis-sdk-web";
@@ -339,8 +344,8 @@ IKUIUserAPI.isAuthenticated().then((authenticated) => {
 
 #### Login flow
 
-You can use this flow in case you don't want to use the `IKUICore.renderLogin()` and you want
-to heavily modify and customize your login view. In case you are using the `renderLogin()`
+You can use this flow in case you don't want to use the `IKUICore.render()` and you want
+to heavily modify and customize your login view. In case you are using the `render()`
 you don't need to use this function.
 
 There are 2 ways to achieve login

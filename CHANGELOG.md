@@ -1,5 +1,22 @@
 # Changelog
 
+### [0.1.13](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.12...v0.1.13) (2022-03-29)
+
+
+### Features
+
+* add render function ([7856c0d](https://github.com/indykite/jarvis-sdk-web/commit/7856c0de4a36beb5ca4d87174ebb00f732c5e6aa))
+* refresh ui container after an action click ([a7f7fc8](https://github.com/indykite/jarvis-sdk-web/commit/a7f7fc8074c42fa44ddaac56fb0d5d8e133fd8c5))
+* support custom args in setup request ([f1c9dcc](https://github.com/indykite/jarvis-sdk-web/commit/f1c9dcc17459b8ee3f321589dc30a90639d8297e))
+
+
+### Bug Fixes
+
+* issue with sending reset password email ([5787599](https://github.com/indykite/jarvis-sdk-web/commit/5787599a6442d6f683cd2eb122f855767021d269))
+* render a form according to context ([8613d44](https://github.com/indykite/jarvis-sdk-web/commit/8613d44abea886ac86c8e2ca75d7bfb56394955e))
+* support redirection in actions ([42e0596](https://github.com/indykite/jarvis-sdk-web/commit/42e0596213ee319c9bee81173658d584fe81438b))
+* update type definitions with deprecated props ([2673c5a](https://github.com/indykite/jarvis-sdk-web/commit/2673c5abdeec560763c5004f8c9a5de925ec5f62))
+
 ### [0.1.12](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.11...v0.1.12) (2022-02-17)
 
 

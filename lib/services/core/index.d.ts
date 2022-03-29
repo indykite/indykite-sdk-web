@@ -96,15 +96,18 @@ type renderRegister = (props: {
     [optionId: string]: string;
   };
   /**
-   * This is a temporary configuration only. Keep on mind that this property will be removed in the future.
+   * This is a temporary configuration only. Keep in mind that this property will be removed in the future.
+   * @deprecated
    */
   userInputNote?: string;
   /**
-   * This is a temporary configuration only. Keep on mind that this property will be removed in the future.
+   * This is a temporary configuration only. Keep in mind that this property will be removed in the future.
+   * @deprecated
    */
   passwordInputNote?: string;
   /**
-   * This is a temporary configuration only. Keep on mind that this property will be removed in the future.
+   * This is a temporary configuration only. Keep in mind that this property will be removed in the future.
+   * @deprecated
    */
   passwordCheckInputNote?: string;
 }) => void;
@@ -138,15 +141,18 @@ type render = (props: {
   termsAgreementSectionContent?: string;
   validatePassword?: (arg0: string) => boolean;
   /**
-   * This is a temporary configuration only. Keep on mind that this property will be removed in the future.
+   * This is a temporary configuration only. Keep in mind that this property will be removed in the future.
+   * @deprecated
    */
   userInputNote?: string;
   /**
-   * This is a temporary configuration only. Keep on mind that this property will be removed in the future.
+   * This is a temporary configuration only. Keep in mind that this property will be removed in the future.
+   * @deprecated
    */
   passwordInputNote?: string;
   /**
-   * This is a temporary configuration only. Keep on mind that this property will be removed in the future.
+   * This is a temporary configuration only. Keep in mind that this property will be removed in the future.
+   * @deprecated
    */
   passwordCheckInputNote?: string;
 }) => void;

@@ -54,4 +54,4 @@ jobs:
           APP_NAME: "Web UI SDK"
           APP_TAG: "jarvis-sdk-web"
         run: |
-          CU_tags="$APP_TAG,$VERSION" cu-cli create -d "Release of $APP_NAME available here: https://www.npmjs.com/package/@indykiteone/$APP_TAG/v/$VERSION" "$APP_NAME - release $VERSION"
+          CU_tags="$APP_TAG,$VERSION,public" cu-cli create -d "Release of $APP_NAME available here: https://www.npmjs.com/package/@indykiteone/$APP_TAG/v/$VERSION" "$APP_NAME - release $VERSION"

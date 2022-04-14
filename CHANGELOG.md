@@ -1,5 +1,17 @@
 # Changelog
 
+### [0.1.14](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.13...v0.1.14) (2022-04-14)
+
+
+### Features
+
+* **api:** linking flow support ([ef1ec09](https://github.com/indykite/jarvis-sdk-web/commit/ef1ec09eb94ff8fac98a56dec73a79f4ee2877c7))
+
+
+### Bug Fixes
+
+* render input fields according to server cfg ([38ec5b7](https://github.com/indykite/jarvis-sdk-web/commit/38ec5b79f228a0b71365d72f64f8a319d8a2fc0b))
+
 ### [0.1.13](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.12...v0.1.13) (2022-03-29)
 
 

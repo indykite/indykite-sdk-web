@@ -240,6 +240,11 @@ type getValidAccessToken = (options?: {
   refreshToken?: string;
   userId?: string;
 }) => Promise<string>;
+type refreshAccessToken = (
+  refreshToken?: string,
+  codeChallenge?: string,
+  omitAuthorizationHeaders?: boolean,
+) => Promise<string>;
 type register = (email: string, password: string) => Promise<DataTokenResponseType>;
 type sendResetPasswordEmail = (email: string) => Promise<{ "@type": string }>;
 type sendNewPassword = (
@@ -268,6 +273,7 @@ interface IKUIUserAPI {
   sendNewPassword: sendNewPassword;
   loginSetup: loginSetup;
   registerSetup: registerSetup;
+  refreshAccessToken: refreshAccessToken;
 }
 
 export const IKUIUserAPI: IKUIUserAPI;

@@ -138,6 +138,7 @@ type render = (props: {
   loginApp?: {
     [optionId: string]: string;
   };
+  otpToken?: string;
   termsAgreementSectionContent?: string;
   validatePassword?: (arg0: string) => boolean;
   /**

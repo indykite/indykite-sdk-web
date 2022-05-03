@@ -1,5 +1,21 @@
 # Changelog
 
+### [0.1.15](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.14...v0.1.15) (2022-05-03)
+
+
+### Features
+
+* expose refresh access token method ([e4437a6](https://github.com/indykite/jarvis-sdk-web/commit/e4437a698715b0827d5e717b67b4d75910146271))
+
+
+### Bug Fixes
+
+* allow to specify otp token in render function ([7b284cb](https://github.com/indykite/jarvis-sdk-web/commit/7b284cb2cfa304f4c2ad0f6de79e3995b75915c5))
+* upgrade axios from 0.21.4 to 0.26.0 ([8166aaa](https://github.com/indykite/jarvis-sdk-web/commit/8166aaa2fb74955c4995ca7b057e690b75bfcb5f))
+* upgrade core-js from 3.20.3 to 3.21.1 ([b8350df](https://github.com/indykite/jarvis-sdk-web/commit/b8350dfa42b2361a101558b62a774cf6651d58b9))
+* upgrade intl-messageformat from 9.11.2 to 9.11.4 ([1fa5bc9](https://github.com/indykite/jarvis-sdk-web/commit/1fa5bc9bfee205654624cd2460f441f6aa41aa3e))
+* upgrade query-string from 7.1.0 to 7.1.1 ([0fc4708](https://github.com/indykite/jarvis-sdk-web/commit/0fc4708de13e49a3f685d68c5b83f01945dc579b))
+
 ### [0.1.14](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.13...v0.1.14) (2022-04-14)
 
 

@@ -34,7 +34,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "axios": "^0.26.0",
-    "core-js": "^3.21.1",
+    "core-js": "^3.22.0",
     "crypto-js": "^4.1.1",
     "intl-messageformat": "^9.11.4",
     "query-string": "^7.1.1",

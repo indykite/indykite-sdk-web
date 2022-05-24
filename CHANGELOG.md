@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.1.16](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.15...v0.1.16) (2022-05-24)
+
+
+### Features
+
+* render message auth node ([ab67bf2](https://github.com/indykite/jarvis-sdk-web/commit/ab67bf235654f30d9e4a000f23323e11814ade41))
+
 ### [0.1.15](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.14...v0.1.15) (2022-05-03)
 
 

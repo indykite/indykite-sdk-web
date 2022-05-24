@@ -43,6 +43,18 @@ type onRenderComponent =
       id: string,
       url: string,
     ) => HTMLElement | undefined)
+  | ((
+      defaultComponent: HTMLElement,
+      componentType: "message",
+      context: {
+        msg?: string;
+        label?: string;
+        style: string;
+        id?: string;
+        extensions?: string;
+        ui: string;
+      },
+    ) => HTMLElement | undefined)
   | ((defaultComponent: HTMLElement, componentType: "separator") => HTMLElement | undefined);
 
 type DataTokenResponseType = {

@@ -191,8 +191,7 @@ const Registration = () => {
         password: "Custom Password",
         confirmPassword: "Custom Confirm Password",
         registerButton: "Custom Join",
-        alreadyHaveAnAccountButton: "Custom Already have an account",
-        orOtherOptions: "Custom you can also continue with",
+        alreadyHaveAnAccountButton: "Custom already has an account",
       }, // Optional custom labels for slight changes, lookup localization settings for full i18n/l10n
       // Optional - You can replace a default element with a custom one or you can only tweak the default element.
       onRenderComponent: (defaultElement, componentType, subcomponentType) => {

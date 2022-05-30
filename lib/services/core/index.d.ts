@@ -81,7 +81,6 @@ type renderLogin = (props: {
     loginButton?: string;
     registerButton?: string;
     forgotPasswordButton?: string;
-    orOtherOptions?: string;
   };
   loginApp?: {
     [optionId: string]: string;
@@ -102,7 +101,6 @@ type renderRegister = (props: {
     confirmPassword?: string;
     registerButton?: string;
     alreadyHaveAnAccountButton?: string;
-    orOtherOptions?: string;
   };
   loginApp?: {
     [optionId: string]: string;
@@ -142,7 +140,6 @@ type render = (props: {
     registerButton?: string;
     registerLinkButton?: string;
     alreadyHaveAnAccountButton?: string;
-    orOtherOptions?: string;
     loginButton?: string;
     forgotPasswordButton?: string;
     forgottenPasswordSubmitButton?: string;

@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.2.0](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.16...v0.2.0) (2022-06-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* implement new design for built-in style
+
+### Features
+
+* implement new design for built-in style ([f1f82f9](https://github.com/indykite/jarvis-sdk-web/commit/f1f82f9bbd9a5dff3ecadce10d194c556fbac41a))
+
 ### [0.1.16](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.15...v0.1.16) (2022-05-24)
 
 

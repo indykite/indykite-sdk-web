@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.0...v0.2.1) (2022-06-03)
+
+
+### Bug Fixes
+
+* release styling changes ([cb90ead](https://github.com/indykite/jarvis-sdk-web/commit/cb90ead8737afbc21ae1e28df4238c1a15c9f143))
+
 ## [0.2.0](https://github.com/indykite/jarvis-sdk-web/compare/v0.1.16...v0.2.0) (2022-06-02)
 
 

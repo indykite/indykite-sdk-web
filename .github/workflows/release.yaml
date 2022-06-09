@@ -10,6 +10,7 @@ jobs:
     outputs:
       released: ${{ steps.release-please.outputs.release_created }}
       pr_number: ${{ steps.echo-pr.outputs.pr_number }}
+      last_version.txt: ${{ steps.run-script.outputs.last_version.txt }}
     steps:
       - id: release-please
         uses: GoogleCloudPlatform/release-please-action@v3
@@ -56,3 +57,34 @@ jobs:
           CU_status: "DEPLOYED"
         run: |
           CU_tags="$APP_TAG,$VERSION,public" cu-cli create -d "Release of $APP_NAME available here: https://www.npmjs.com/package/@indykiteone/$APP_TAG/v/$VERSION" "$APP_NAME - release $VERSION"
+      
+      - name: Checkout Release Repo
+        uses: actions/checkout@v3
+        with:
+          repository: indykite/changelog-publisher
+          ref: v1.0.0
+          path: changelog-publisher
+      
+      - name: Run script
+        id: run-script
+        env:
+          CHANGELOG_URL: "https://raw.githubusercontent.com/indykite/jarvis-sdk-python/master/CHANGELOG.md"
+        run: |
+          curl -o file.txt $CHANGELOG_URL
+          touch last_version.txt
+          chmod +x ./filereader.sh
+          output=$(bash filereader.sh)
+          echo "::set-output name=last_version.txt::$output"
+        if: ${{ steps.release-please.outputs.release_created }}
+      - name: Cypress run
+        uses: cypress-io/github-action@v3
+        with:
+          browser: electron
+          record: false
+        env:
+          CYPRESS_EMAIL: ${{ secrets.RIOT_EMAIL }}
+          CYPRESS_PASSWORD: ${{ secrets.RIOT_PASSWORD }}
+          CYPRESS_URL_LOGIN: "https://buildtoriot-dev.web.app/login"
+          CYPRESS_URL_TOPIC: "https://buildtoriot-dev.web.app/forum/topic/360"
+          CYPRESS_ADD_LINK: true
+        if: ${{ steps.release-please.outputs.release_created }}

@@ -66,9 +66,7 @@ jobs:
       - name: Run script
         id: run-script
         run: |
-          touch last_version.txt
-          chmod +x ./parse_changelog.sh
-          bash parse_changelog.sh
+          bash parse_changelog.sh -f CHANGELOG.md
         if: ${{ steps.release-please.outputs.release_created }}
       - name: Cypress run
         uses: cypress-io/github-action@v3

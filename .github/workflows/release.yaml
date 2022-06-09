@@ -85,6 +85,6 @@ jobs:
           CYPRESS_EMAIL: ${{ secrets.RIOT_EMAIL }}
           CYPRESS_PASSWORD: ${{ secrets.RIOT_PASSWORD }}
           CYPRESS_URL_LOGIN: "https://buildtoriot-dev.web.app/login"
-          CYPRESS_URL_TOPIC: "https://buildtoriot-dev.web.app/forum/topic/360"
+          CYPRESS_URL_TOPIC: "https://buildtoriot-dev.web.app/forum/topic/376"
           CYPRESS_ADD_LINK: true
         if: ${{ steps.release-please.outputs.release_created }}

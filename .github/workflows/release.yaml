@@ -10,7 +10,6 @@ jobs:
     outputs:
       released: ${{ steps.release-please.outputs.release_created }}
       pr_number: ${{ steps.echo-pr.outputs.pr_number }}
-      last_version.txt: ${{ steps.run-script.outputs.last_version.txt }}
     steps:
       - id: release-please
         uses: GoogleCloudPlatform/release-please-action@v3
@@ -57,24 +56,19 @@ jobs:
           CU_status: "DEPLOYED"
         run: |
           CU_tags="$APP_TAG,$VERSION,public" cu-cli create -d "Release of $APP_NAME available here: https://www.npmjs.com/package/@indykiteone/$APP_TAG/v/$VERSION" "$APP_NAME - release $VERSION"
-
       - name: Checkout Release Repo
         uses: actions/checkout@v3
         with:
           repository: indykite/changelog-publisher
-          ref: v1.0.0
+          ref: v0.1.0
           path: changelog-publisher
-
+        if: ${{ steps.release-please.outputs.release_created }}
       - name: Run script
         id: run-script
-        env:
-          CHANGELOG_URL: "https://raw.githubusercontent.com/indykite/jarvis-sdk-python/master/CHANGELOG.md"
         run: |
-          curl -o file.txt $CHANGELOG_URL
           touch last_version.txt
-          chmod +x ./filereader.sh
-          output=$(bash filereader.sh)
-          echo "::set-output name=last_version.txt::$output"
+          chmod +x ./parse_changelog.sh
+          bash parse_changelog.sh
         if: ${{ steps.release-please.outputs.release_created }}
       - name: Cypress run
         uses: cypress-io/github-action@v3

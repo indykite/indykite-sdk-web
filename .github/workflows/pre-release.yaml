@@ -35,13 +35,16 @@ jobs:
         run: npm publish --access public --tag alpha
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Create CU task
-        if: ${{ steps.release-please.outputs.release_created }}
-        env:
-          CU_list: "186335199"
-          CU_token: ${{ secrets.CLICKUPPAT }}
-          APP_NAME: "Web UI SDK"
-          APP_TAG: "jarvis-sdk-web"
-          CU_status: "DEPLOYED"
-        run: |
-          CU_tags="$APP_TAG,$VERSION,alpha" cu-cli create -d "Release of $APP_NAME available here: https://www.npmjs.com/package/@indykiteone/$APP_TAG/v/$VERSION" "$APP_NAME - release $VERSION"
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v0
+        if: ${{ always() }}
+        with:
+          credentials_json: ${{ secrets.GCP_SERVICE_KEY_BQ }}
+      - name: Publish Deployment Metadata
+        if: ${{ always() }}
+        uses: indykite/metadata-publisher@v0
+        with:
+          version: ${{ env.VERSION }}
+          status: ${{ job.status }}
+          bigquery_table: ${{ env.BIGQUERY_TABLE }}
+          env: alpha

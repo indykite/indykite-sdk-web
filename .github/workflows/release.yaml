@@ -40,24 +40,11 @@ jobs:
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-      - name: Install CU tool
-        if: ${{ steps.release-please.outputs.release_created }}
-        run: npm install -g clickup-simple-cli
       - name: Get Version
         if: ${{ steps.release-please.outputs.release_created }}
         run: |
           export VERSION=$(cat package.json | jq -r '.version')
           echo "VERSION=$VERSION" >> $GITHUB_ENV
-      - name: Create CU task
-        if: ${{ steps.release-please.outputs.release_created }}
-        env:
-          CU_list: "186335199"
-          CU_token: ${{ secrets.CLICKUPPAT }}
-          APP_NAME: "Web UI SDK"
-          APP_TAG: "jarvis-sdk-web"
-          CU_status: "DEPLOYED"
-        run: |
-          CU_tags="$APP_TAG,$VERSION,public" cu-cli create -d "Release of $APP_NAME available here: https://www.npmjs.com/package/@indykiteone/$APP_TAG/v/$VERSION" "$APP_NAME - release $VERSION"
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v0

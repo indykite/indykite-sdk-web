@@ -11,7 +11,6 @@
   "uisdk.login.login": "Přihlášení",
   "uisdk.login.register_button": "Vytvořit účet",
   "uisdk.login.forgot_password_button": "Zapomenuté heslo",
-  "uisdk.login.oidc_text": "Přihlásit pomocí",
   "authapi.err.validate_email_verdict": "",
   "authapi.err.password_too_short": "{authapi.err.password_too_short, plural, one {} few {} many {} other {}}",
   "authapi.err.password_too_long": "{authapi.err.password_too_long, plural, one {} few {} many {} other {}}",

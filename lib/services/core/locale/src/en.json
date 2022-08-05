@@ -11,7 +11,6 @@
   "uisdk.login.login": "Login",
   "uisdk.login.register_button": "Create an account",
   "uisdk.login.forgot_password_button": "Forgot password",
-  "uisdk.login.oidc_text": "Log in with",
   "authapi.err.validate_email_verdict": "username policy requires valid email",
   "authapi.err.password_too_short": "{authapi.err.password_too_short, plural, one {password too short, must be more than %d character} other {password too short, must be more than %d characters}}",
   "authapi.err.password_too_long": "{authapi.err.password_too_long, plural, one {password too long, must be less than %d character} other {password too long, must be less than %d characters}}",

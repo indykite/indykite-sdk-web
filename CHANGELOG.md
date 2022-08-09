@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.2](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.1...v0.2.2) (2022-08-09)
+
+
+### Bug Fixes
+
+* remove log in with text from buttons ([a4813f7](https://github.com/indykite/jarvis-sdk-web/commit/a4813f723a6cec03b45063215a47f02da23c1f79))
+* store thid in local storage ([cdf4119](https://github.com/indykite/jarvis-sdk-web/commit/cdf4119dd0934cd497cb335affec090c9df1069a))
+
 ## [0.2.1](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.0...v0.2.1) (2022-06-03)
 
 

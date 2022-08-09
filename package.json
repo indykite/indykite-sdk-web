@@ -1,6 +1,6 @@
 {
   "name": "@indykiteone/jarvis-sdk-web",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "UI SDK for IndyKite.id",
   "main": "./lib/services/core/index.js",
   "types": "./lib/services/core/index.d.ts",

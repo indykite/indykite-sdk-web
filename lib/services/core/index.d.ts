@@ -18,7 +18,7 @@ type onRenderComponent =
   | ((
       defaultComponent: HTMLElement,
       componentType: "form",
-      formComponentType: "username" | "email" | "password" | "passwordCheck",
+      formComponentType: string, // something like "username", "email", "password", "passwordCheck", ...
       label: string,
       context: any,
     ) => HTMLElement | undefined)
@@ -167,6 +167,35 @@ type render = (props: {
   passwordCheckInputNote?: string;
 }) => void;
 
+type renderForm = (props: {
+  arguments?: Record<string, string>;
+  renderElementSelector: string;
+  onFail?: (error: Error) => void;
+  onRenderComponent?: onRenderComponent;
+  onSuccess: (arg0: DataTokenResponseType) => void;
+  redirectUri?: string;
+  labels?: {
+    username?: string;
+    email?: string;
+    password?: string;
+    confirmPassword?: string;
+    registerButton?: string;
+    registerLinkButton?: string;
+    alreadyHaveAnAccountButton?: string;
+    loginButton?: string;
+    forgotPasswordButton?: string;
+    forgottenPasswordSubmitButton?: string;
+    newPassword?: string;
+    confirmNewPassword?: string;
+    setNewPasswordButton?: string;
+  };
+  loginApp?: {
+    [optionId: string]: string;
+  };
+  otpToken?: string;
+  termsAgreementSectionContent?: string;
+}) => void;
+
 type renderForgotPasswordForm = (props: {
   renderElementSelector: string;
   loginPath?: string;
@@ -190,15 +219,25 @@ type renderSetNewPasswordForm = (props: {
 
 interface IKUICore {
   /**
-   * @deprecated Use `render` function instead.
+   * @deprecated Use `renderForm` function instead.
    */
   renderLogin: renderLogin;
   /**
-   * @deprecated Use `render` function instead.
+   * @deprecated Use `renderForm` function instead.
    */
   renderRegister: renderRegister;
+  /**
+   * @deprecated Use `renderForm` function instead.
+   */
   render: render;
+  renderForm: renderForm;
+  /**
+   * @deprecated Use `renderForm` function instead.
+   */
   renderForgotPasswordForm: renderForgotPasswordForm;
+  /**
+   * @deprecated Use `renderForm` function instead.
+   */
   renderSetNewPasswordForm: renderSetNewPasswordForm;
 }
 

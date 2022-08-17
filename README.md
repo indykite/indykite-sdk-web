@@ -106,99 +106,141 @@ IKUIInit({
 
 ### Core - UI API
 
-To use UI elements provided by @indykiteone/jarvis-sdk-web library make sure you have done initializing of the library as described above.
-All render functions do network setup calls. So they should be treated as side effects in the JS framework of your application.
+To use the UI elements provided by the @indykiteone/jarvis-sdk-web library, make sure you've completed initializing the library as described above.
+As all render functions do network setup calls, they should be treated as side effects in the JS framework of your application.
 
-##### Login form element:
+#### Form rendering
 
-On `<base_app_uri>/login` path or path of your liking do
+To render the form without any customization, call the `IKUICore.renderForm` function with `renderElementSelector` and `onSuccess` parameters.
 
 ```javascript
 import { IKUICore } from "@indykiteone/jarvis-sdk-web";
 
-const Login = () => {
+const IKForm = () => {
   // React example, call only during the first render. Side effect!
   React.useEffect(() => {
-    IKUICore.render({
-      renderElementSelector: "#login-container",
-      onSuccessLogin: (data) => {
-        console.log(data.token);
-        console.log(data.refresh_token);
-        console.log(data.token_type); // For example "bearer"
-        console.log(data.expiration_time); // Timestamp
-        console.log(data.expires_in); // In x seconds
+    IKUICore.renderForm({
+      renderElementSelector: "#form-container",
+      onSuccess: (data) => {
+        console.log(data);
       },
-      redirectUri: "/callback", // Optional - Needed only if you use OIDC (Google, FB etc) login buttons
-      registrationPath: "/registration",
-      forgotPasswordPath: "/forgot/password",
-      labels: {
-        username: "Custom Username",
-        password: "Custom Password",
-        loginButton: "Custom Login with us!",
-        registerLinkButton: "Custom Register",
-        forgotPasswordButton: "custom Forgot Password",
-      }, // Optional custom labels for slight changes, lookup localization settings for full i18n/l10n
-      // If you setup custom labels - they overwrite the localization settings
-      // Optional - You can replace a default element with a custom one or you can only tweak the default element.
-      onRenderComponent: (defaultElement, componentType, subcomponentType) => {
-        if (componentType === "form" && subcomponentType === "password") {
-          const el = document.createElement("div");
-          ReactDOM.render(<MyOwnPasswordComponent />, el);
-          return el;
-        }
+      onFail: (error) => {
+        console.error(error);
       },
+      redirectUri: "/callback", // Optional - Needed only if you use OIDC (Google, FB etc) buttons
     });
   }, []);
 
   return (
     <div>
-      <div id="login-container" />
+      <div id="form-container" />
     </div>
   );
 };
 ```
 
-##### Registration form element:
+#### Forgotten password flow
 
-On `<base_app_uri>/registration` path do
+If you want to render the Forgotten password screen as the initial form, update your authentication flow by adding a new condition to your `Switch` node with the following condition:
+
+```
+has(session.input) && has(session.input.flow) && session.input.flow == 'forgotten'
+```
+
+and connect the new branch with the `Forgotten password` node, as it's on the image.
+
+![](/assets/forgotten_password_flow.png)
+
+Add the flow argument in the rendering function, and start the flow with the Forgotten password form.
 
 ```javascript
 import { IKUICore } from "@indykiteone/jarvis-sdk-web";
 
-const Registration = () => {
-  const htmlString = "<h5>By clicking Agree & Join you agree with our terms and conditions.</h5>";
-
+const IKForm = () => {
   // React example, call only during the first render. Side effect!
   React.useEffect(() => {
-    IKUICore.render({
-      // Optional - You can specify your custom arguments and use them in the switch node in the authentication flow builder (on indykite.id site)
+    IKUICore.renderForm({
+      renderElementSelector: "#form-container",
+      onSuccess: (data) => {
+        console.log(data);
+      },
+      onFail: (error) => {
+        console.error(error);
+      },
       arguments: {
-        flow: "register",
+        flow: "forgotten",
       },
-      renderElementSelector: "#register-container",
-      termsAgreementSectionContent: htmlString,
-      onSuccessRegistration: (data) => {
-        console.log(data.token);
-        console.log(data.refresh_token);
-        console.log(data.token_type); // For example "bearer"
-        console.log(data.expiration_time); // Timestamp
-        console.log(data.expires_in); // In x seconds
+    });
+  }, []);
+
+  return (
+    <div>
+      <div id="form-container" />
+    </div>
+  );
+};
+```
+
+#### Set a new password flow (with an OTP)
+
+You can also use the `IKUICore.renderForm` function. You only need to pass an `otpToken` property there, as shown in the next example.
+
+```javascript
+import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+
+const IKForm = () => {
+  // React example, call only during the first render. Side effect!
+  React.useEffect(() => {
+    IKUICore.renderForm({
+      renderElementSelector: "#form-container",
+      onSuccess: (data) => {
+        console.log(data);
       },
-      redirectUri: "/callback", // Optional - needed only if you use OIDC (Google, FB etc) register buttons
-      loginPath: "/login",
-      labels: {
-        username: "Custom Username",
-        password: "Custom Password",
-        confirmPassword: "Custom Confirm Password",
-        registerButton: "Custom Join",
-        alreadyHaveAnAccountButton: "Custom already has an account",
-      }, // Optional custom labels for slight changes, lookup localization settings for full i18n/l10n
-      // Optional - You can replace a default element with a custom one or you can only tweak the default element.
-      onRenderComponent: (defaultElement, componentType, subcomponentType) => {
-        if (componentType === "form" && subcomponentType === "password") {
-          const el = document.createElement("div");
-          ReactDOM.render(<MyOwnPasswordComponent />, el);
-          return el;
+      onFail: (error) => {
+        console.error(error);
+      },
+      otpToken: referenceId,
+    });
+  }, []);
+
+  return (
+    <div>
+      <div id="form-container" />
+    </div>
+  );
+};
+```
+
+#### Replace default component
+
+Use the `onRenderComponent` property to tweak an existing element or create a new one. In this example we will put a small _"Enter the same password here"_ message under the second password input in the registration form.
+
+```javascript
+import ReactDOM from "react-dom";
+import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+
+const IKForm = () => {
+  // React example, call only during the first render. Side effect!
+  React.useEffect(() => {
+    IKUICore.renderForm({
+      renderElementSelector: "#form-container",
+      onSuccess: (data) => {
+        console.log(data);
+      },
+      onFail: (error) => {
+        console.error(error);
+      },
+      onRenderComponent: (component, componentType, componentSubtype) => {
+        if (componentType === "form" && componentSubtype === "password-confirm") {
+          const wrapper = document.createElement("div");
+          ReactDOM.render(
+            <i>
+              <small>Enter the same password here</small>
+            </i>,
+            wrapper,
+          );
+          wrapper.prepend(component);
+          return wrapper;
         }
       },
     });
@@ -206,388 +248,91 @@ const Registration = () => {
 
   return (
     <div>
-      <div id="register-container" />
+      <div id="form-container" />
     </div>
   );
 };
 ```
 
-> In case you need to add a note under an input field you can use `userInputNote`, `passwordInputNote` or
-> `passwordCheckInputNote` properties in order to display the particular message. Anyway, keep on mind that this
-> is a temporary solution only and these three properties will be removed in the future!
-
-##### Forgot password element:
-
-On `<base_app_uri>/forgot/password` path or path of your liking (must be same as in param `forgotPasswordPath` in function `render`) do
+You can also replace a component with your custom one. In this example we are replacing the form submit button.
 
 ```javascript
+import ReactDOM from "react-dom";
 import { IKUICore } from "@indykiteone/jarvis-sdk-web";
 
-const ForgotPassword = () => {
+const IKForm = () => {
   // React example, call only during the first render. Side effect!
   React.useEffect(() => {
-    IKUICore.renderForgotPasswordForm({
-      renderElementSelector: "#forgotten-password-container",
-      labels: {
-        username: "Custom Email address",
-        submitButton: "Custom Send password reset email",
-        backToLogin: "Custom Go back to login",
-      }, // Optional custom labels for slight changes, lookup localization settings for full i18n/l10n
+    IKUICore.renderForm({
+      renderElementSelector: "#form-container",
+      onSuccess: (data) => {
+        console.log(data);
+      },
+      onFail: (error) => {
+        console.error(error);
+      },
+      onRenderComponent: (component, componentType, componentSubtype, ...rest) => {
+        if (componentType === "form" && componentSubtype === "submit") {
+          const [clickHandler] = rest;
+          const newButton = document.createElement("button");
+          newButton.innerText = "Custom submit";
+          newButton.addEventListener("click", clickHandler);
+          return newButton;
+        }
+      },
     });
   }, []);
 
   return (
     <div>
-      <div id="forgotten-password-container" />
+      <div id="form-container" />
     </div>
   );
 };
 ```
 
-##### Set new password element:
-
-On `<base_app_uri>/set/new/password/:referenceId` path or path of your liking do
+Or you can update an existing component. Here we are adding a custom class to all of our inputs.
 
 ```javascript
+import ReactDOM from "react-dom";
 import { IKUICore } from "@indykiteone/jarvis-sdk-web";
-import { useParams } from "react-router-dom"; // Or any other way how to extract url parameters
 
-const SetNewPassword = () => {
-  const { referenceId } = useParams();
-
+const IKForm = () => {
   // React example, call only during the first render. Side effect!
   React.useEffect(() => {
-    IKUICore.renderSetNewPasswordForm({
-      renderElementSelector: "#set-new-password-container",
-      token: referenceId,
-      // labels: {
-      //     newPassword: "Custom Password",
-      //     confirmNewPassword: "Custom Password confirm",
-      //     submitButton: "Custom set new password"
-      // } // Optional custom labels for slight changes, lookup localization settings for full i18n/l10n
+    IKUICore.renderForm({
+      renderElementSelector: "#form-container",
+      onSuccess: (data) => {
+        console.log(data);
+      },
+      onFail: (error) => {
+        console.error(error);
+      },
+      onRenderComponent: (component, componentType) => {
+        if (componentType === "form") {
+          const inputs = component.getElementsByTagName("input");
+          if (inputs.length > 0) {
+            Array.from(inputs).forEach((input) => input.classList.add("my-input-class"));
+          }
+          return component;
+        }
+      },
     });
   }, []);
 
   return (
     <div>
-      <div id="set-new-password-container" />
+      <div id="form-container" />
     </div>
   );
 };
-```
-
-You should redirect your users to this path in the email templates.
-
-### IKUIUserAPI
-
-Functions from this object requires to be called after an Init function.
-The SDK is handling the state of these functions, so you don't need to worry
-about them.
-
-#### Get Access Token `IKUIUserAPI.getValidAccessToken()`
-
-You can use this function to always get an active access token for the user.
-
-```javascript
-import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
-
-IKUIUserAPI.getValidAccessToken()
-  .then((token) => {
-    console.log("Access Token", token);
-  })
-  .catch((err) => {
-    console.log("You should display logged out user", err);
-  });
-```
-
-Optional refresh token can be passed to receive new valid access token `IKUIUserAPI.getValidAccessToken({ refreshToken })`.
-This might be useful in case you store / received the refresh token outside of the SDK. In case the SDK already
-has different refresh token stored. The new one (if valid) rewrites the old one.
-
-```javascript
-import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
-
-IKUIUserAPI.getValidAccessToken({ refreshToken: refreshToken })
-  .then((token) => {
-    console.log("Access Token", token);
-  })
-  .catch((err) => {
-    console.log("You should display logged out user", err);
-  });
-```
-
-In case you have multiple users logged in you will need to specify which user's access token
-you want to return. You can do it by specifying the user's ID.
-
-```javascript
-import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
-
-IKUIUserAPI.getValidAccessToken({ userId: userId })
-  .then((token) => {
-    console.log("Access Token", token);
-  })
-  .catch((err) => {
-    console.log("You should display logged out user", err);
-  });
-```
-
-Anyway, if you call the `getValidAccessToken` function and the user is not logged in, it will throw an exception. If you only want to know whether the user is authenticated, you can use the `IKUIUserAPI.isAuthenticated()` function. In case you have multiple users you can specify the user by its ID in the first parameter.
-
-```javascript
-import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
-
-IKUIUserAPI.isAuthenticated().then((authenticated) => {
-  console.log(autheticated ? "Is autheticated" : "Is not authenticated");
-});
-```
-
-#### Login flow
-
-You can use this flow in case you don't want to use the `IKUICore.render()` and you want
-to heavily modify and customize your login view. In case you are using the `render()`
-you don't need to use this function.
-
-There are 2 ways to achieve login
-
-1. One-step login function
-2. Two-step setup and login function - Recommended in case you want more control or using OIDC support.
-
-#### 1. One Step Login `IKUIUserAPI.login("username", "Password")`
-
-This function is suitable only if your authentication flow is simple and requires username and password only. Calling this function with valid username and password parameters returns a promise which is either resolved and returns access tokens or rejected and returns error info.
-
-```javascript
-import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
-
-IKUIUserAPI.login("valid@username.com", "Validpassword")
-  .then((data) => {
-    if (data["@type"] === "success") {
-      console.log(data["@type"]);
-      console.log(data.token);
-      console.log(data.refresh_token);
-      console.log(data.token_type); // For example "bearer"
-      console.log(data.expiration_time); // Timestamp
-      console.log(data.expires_in); // In x seconds
-    } else if (data["@type"] === "oidc") {
-      IKUIOidc.oidcSetup(data);
-    }
-  })
-  .catch((err) => {
-    console.log(err["@type"]);
-    console.log(err["~error"].code);
-    console.log(err["~error"].msg);
-  });
-```
-
-#### 2. Two Step Login (Setup & Login)
-
-This flow consist of calling `IKUIUserAPI.loginSetup()` which returns also UI config response from the server.
-It also checks for any redirects in case of flow with OIDC and in case the user is already logs in - automatically
-does redirect to the requested url. You can explore this response in case you would like to also configure your UI based on the response.
-The Response from the login is than used in login function `IKUIUserAPI.login("username", "Passwd", responseFromSetup)`
-
-```javascript
-import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
-
-const responseConfig = await IKUIUserAPI.loginSetup();
-// In case of ODIC flow, when the user is already logged in, automatic
-// redirection is triggered now.
-
-const data = await IKUIUserAPI.login("userName", "Password", responseConfig);
-
-console.log(data["@type"]);
-if (data["@type"] === "success") {
-  console.log(data.token);
-  console.log(data.refresh_token);
-  console.log(data.token_type); // For example "bearer"
-  console.log(data.expiration_time); // Timestamp
-  console.log(data.expires_in); // In x seconds
-} else if (data["@type"] === "oidc") {
-  IKUIOidc.oidcSetup(data);
-}
-```
-
-> If a user was invited to your system and he has a reference ID from his invitation email, you should pass the reference ID to
-> the loginSetup function (`IKUIUserAPI.loginSetup({ otpToken: "referenceID" })`) so that the application is able to connect
-> the logged in user with the invited one.
-
-#### Register `IKUIUserAPI.register("username", "Passwd")`
-
-This function is suitable only if your authentication flow is simple and requires username and password only (theoretically the flow might require you to use an OIDC provider in the next step). Calling this function with valid username and password parameters returns a promise which is either resolved and returns access tokens or rejected and returns error info.
-
-```javascript
-import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
-
-IKUIUserAPI.register("valid@username.com", "Validpassword")
-  .then((data) => {
-    console.log(data["@type"]);
-    console.log(data.token);
-    console.log(data.refresh_token);
-    console.log(data.token_type); // For example "bearer"
-    console.log(data.expiration_time); // Timestamp
-    console.log(data.expires_in); // In x seconds
-  })
-  .catch((err) => {
-    console.log(err["@type"]);
-    console.log(err["~error"].code);
-    console.log(err["~error"].msg);
-  });
-```
-
-#### Register Setup `IKUIUserAPI.registerSetup()`
-
-This is an optional function which returns you the setup object where you can find the configured register options.
-It's useful when you want to dynamically show the register options buttons, for example the OIDC providers
-(Google, Facebook...), however it's NOT necessary to be called / used for any other reason.
-
-```javascript
-//... React example
-useEffect(() => {
-  (async () => {
-    const response = await IKUIUserAPI.registerSetup();
-    // Error handling should be in place
-    setRegisterOpts(response.opts);
-  })();
-}, []);
-
-//...
-
-return (
-  <div>
-    {registerOpts
-      ?.filter((opt) => opt["@type"] === "oidc")
-      .map((opt) => (
-        <React.Fragment key={opt["@id"]}>
-          <br />
-          <button
-            id={`custom-btn-oidc-${opt.prv}`}
-            onClick={() =>
-              IKUIOidc.oidcSetup({
-                id: opt["@id"],
-                redirectUri: "/redirectUri",
-              })
-            }>
-            {opt.prv}
-          </button>
-        </React.Fragment>
-      ))}
-  </div>
-);
-```
-
-> If a user was invited to your system and he has a reference ID from his invitation email, you should pass the reference ID to
-> the registerSetup function (`IKUIUserAPI.registerSetup({ otpToken: "referenceID" })`) so that the application is able to connect
-> the registered user with the invited one.
-
-#### ~~Logout the user `IKUIUserAPI.logoutCurrentUser()`~~
-
-Deprecated. You should use `IKUIUserAPI.logoutUser()` instead.
-
-#### Logout the user `IKUIUserAPI.logoutUser()`
-
-In case this function fails it will clear the localstorage regardless. However the token
-on the server will not be invalidated. So it's important that this function works but
-you can treat the user are logged out regardless of the output.
-
-```javascript
-import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
-
-IKUIUserAPI.logoutUser()
-  .then((result) => {
-    console.log("user logged out", result);
-  })
-  .catch((err) => {
-    console.log("user not logged out", err);
-  });
-```
-
-If you have multiple users logged in you can specify which user you want to log out.
-Without specifying the user's ID you will log out the last logged in user.
-
-```javascript
-import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
-
-IKUIUserAPI.logoutUser("user-id")
-  .then((result) => {
-    console.log("user logged out", result);
-  })
-  .catch((err) => {
-    console.log("user not logged out", err);
-  });
-```
-
-Moreover, if you have multiple users logged in you can log out all logged in users with one call.
-
-```javascript
-import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
-
-IKUIUserAPI.logoutAllUsers()
-  .then((result) => {
-    console.log("user logged out", result);
-  })
-  .catch((err) => {
-    console.log("user not logged out", err);
-  });
-```
-
-#### Send reset password email `IKUIUserAPI.sendResetPasswordEmail("Valid@mailaddress.com")`
-
-Call this function with valid user email address. He should receive email with link to reset his password.
-
-```javascript
-import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
-IKUIUserAPI.sendResetPasswordEmail("Valid@mailaddress.com")
-  .then((data) => {
-    console.log(data["@type"]); // "success"
-  })
-  .catch((err) => {
-    console.log(err["@type"]);
-    console.log(err["~error"].code);
-    console.log(err["~error"].msg);
-  });
-```
-
-#### Send new password `IKUIUserAPI.sendNewPassword("token from link received by mail", "MyNewPassword")`
-
-Call this function with reference id token which you receive to email on send reset password email (above) and with new valid password value.
-The SDK stores the new access tokens on sucessfull password reset and you can get the access token with IKUIUserAPI.getValidAccessToken() or handle it from the resolved promise.
-
-```javascript
-import { IKUIUserAPI } from "@indykiteone/jarvis-sdk-web";
-IKUIUserAPI.sendNewPassword("token from link received by mail", "MyNewPassword")
-  .then((data) => {
-    console.log(data["@type"]); // "success" | "fail"
-    console.log(data.token);
-    console.log(data.refresh_token);
-    console.log(data.token_type); // for example "bearer"
-    console.log(data.expiration_time); // timestamp
-    console.log(data.expires_in); // in x seconds
-    // SDK stores the token on success
-  })
-  .catch((err) => {
-    console.log(err["@type"]);
-    console.log(err["~error"].code);
-    console.log(err["~error"].msg);
-  });
 ```
 
 ## IKUIOidc - OIDC Support
 
-If you want your application to be able to login with other identity providers
-follow the flow described below:
+### Handling the OIDC callback
 
-1. Init library (described above)
-2. Create /login route and Login component using our exposed function or our built-in UI (render UI functions) to your app (described above)
-3. Create /registration route and Registration component using our exposed function or our built-in UI (render UI functions) to your app (described above)
-4. Have a /callback route calling `IKUIOidc.oidcCallback()`
-
-### Handle oidc callback `IKUIOidc.oidcCallback()`
-
-Have this function called on a route to which you are redirected after successful login with e.g Facebook or Google.
-`IKUIOidc.oidcCallback()` can then gets query string params given by the identity provider, and those are sent to
-server. After that SDK sends verifier and receives token which is stored in the SDK and returned by the function. Anyway,
-you might be requested to be redirected to a different URL. In that case `data.redirect_to` property will be defined and you
-should redirect your page to the specified URL.
+When you want to login with Google or Facebook you need to pass the `redirectUri` property to your `IKUICore.renderForm` function call. After you finish the login/registration with the external OIDC provider you will be redirected to this URI. On this route you have to call `IKUIOidc.oidcCallback()` function which will process the returned values from the OIDC provider and return you an object. You have to check, whether this object contains a `redirect_to` property and if so, you have to redirect your page to this URI. If the object does't have such property, then the object should contain the access token.
 
 ```javascript
 import React from "react";
@@ -606,30 +351,18 @@ const Callback = () => {
         console.log(data.token_type); // For example "bearer"
         console.log(data.expiration_time); // Timestamp
         console.log(data.expires_in); // In x seconds
-
-        // You are logged in, and can redirect to auth routes
       })
       .catch(console.log);
   }, []);
-  return <h3>general callback</h3>;
+  return <span>OIDC callback</span>;
 };
 ```
 
-If you want your application to be a login application where users are redirected from third party application
-follow the flow described below:
+> Keep in mind that after you redirect your page to the URI from the `redirect_to` property and you call there the `IKUICore.renderForm` function, you have to call that function only once (especially when you are using React ensure your `useEffect` is called only once). Otherwise the data from the OIDC provider will be lost.
 
-1. Init library (described above)
-2. Create /login route and Login component using our exposed function or our built-in UI (render UI functions) to your app (described above)
-3. Create /registration route and Registration component using our exposed function or our built-in UI (render UI functions) to your app (described above)
-4. Have a /login/oauth2 route calling `IKUIOidc.handleOidcOriginalParamsAndRedirect()`
+### OIDC Provider
 
-> The access tokens don't need to be returned immediately if your authentication flow contains a linking flow. See the "Linking flow" section for more details.
-
-### Handle oidc original parameters and redirect `IKUIOidc.handleOidcOriginalParamsAndRedirect()`
-
-Call this function on a route of your login application where users are redirected after clicking Login with NAME OF
-YOUR SERVICE. Calling this function expects the url to contain query parameters relevant to OAuth2 protocol. Those
-query parameters are stored in SDK and user is redirected to /login route.
+When you act as an OIDC provider, you have to call `IKUIOidc.handleOidcOriginalParamsAndRedirect` function. For this case, it's good to have a special route so you know you are redirected here from a different page. This function stores its actual state and redirects you to a route which you usually use for logging users.
 
 ```javascript
 import React from "react";
@@ -637,163 +370,13 @@ import { IKUIOidc } from "@indykiteone/jarvis-sdk-web";
 
 const Oidc = () => {
   React.useEffect(() => {
-    IKUIOidc.handleOidcOriginalParamsAndRedirect();
+    // Put your default login route to the function argument
+    IKUIOidc.handleOidcOriginalParamsAndRedirect("/login");
   }, []);
 
-  return <h3>oidc</h3>;
+  return <span>OIDC login...</span>;
 };
 ```
-
-### Oidc setup `IKUIOidc.oidcSetup()`
-
-If your login flow has type of `logical` and your `IKUIUserAPI.loginSetup()` response includes opts of type `oidc`, you will need to pass the option id to this function along with `redirectUri` address. If your flow has the `oidc` type and the response has no id, you can use `null` as the id in this function.
-Please see example of React component using this function below.
-
-```javascript
-import React from "react";
-import { IKUIOidc } from "@indykiteone/jarvis-sdk-web";
-
-const Login = () => {
-  const [setupResponseData, setSetupResponseData] = React.useState(null);
-  const [type, setType] = React.useState(null);
-
-  React.useEffect(() => {
-    const setup = async () => {
-      const loginSetupResponse = await IKUIUserAPI.loginSetup();
-      setSetupResponseData(loginSetupResponse);
-
-      if (loginSetupResponse && loginSetupResponse["@type"]) setType(loginSetupResponse["@type"]);
-    };
-
-    setup().catch(console.log);
-  }, []);
-
-  return (
-    <div>
-      {type === "logical" &&
-        setupResponseData.opts
-          .filter((opt) => opt.prv)
-          .map((opt) => (
-            <React.Fragment key={opt["@id"]}>
-              <br />
-              <button
-                onClick={() =>
-                  IKUIOidc.oidcSetup({
-                    id: opt["@id"],
-                    redirectUri: "/redirectUri",
-                  })
-                }>
-                {opt.prv}
-              </button>
-            </React.Fragment>
-          ))}
-    </div>
-  );
-};
-```
-
-### Single OIDC setup `IKUIOidc.singleOidcSetup(loginSetupResponseData)`
-
-This function is only relevant to you if you are receiving response of type "oidc" from `IKUIUserAPI.loginSetup()`. If that is the case, call this function with the response as an argument and SDK will redirect you to your
-identity provider with required parameters. Please see example of React component using this function below.
-
-```javascript
-import React from "react";
-import { IKUIOidc } from "@indykiteone/jarvis-sdk-web";
-
-const Login = () => {
-  const [setupResponseData, setSetupResponseData] = React.useState(null);
-  const [type, setType] = React.useState(null);
-
-  React.useEffect(() => {
-    const setup = async () => {
-      const loginSetupResponse = await IKUIUserAPI.loginSetup();
-      setSetupResponseData(loginSetupResponse);
-
-      if (loginSetupResponse && loginSetupResponse["@type"]) setType(loginSetupResponse["@type"]);
-    };
-
-    setup().catch(console.log);
-  }, []);
-
-  return (
-    <div>
-      {type === "oidc" && (
-        <>
-          <br />
-          <br />
-          <button onClick={() => IKUIOidc.singleOidcSetup(setupResponseData)}>
-            {setupResponseData.prv}
-          </button>
-        </>
-      )}
-    </div>
-  );
-};
-```
-
-## Linking flow
-
-The authentication flow may be configured in a way that it will require you to firstly login with a username and a password and after that you will need to login with an google account as well. This is called "linking flow". In case you're using `IKUICore.renderLogin` or `IKUICore.renderRegister` function, you don't need to think about this and the SDK will handle the screens for you automatically. Anyway, if you are using `IKUIUserAPI.loginSetup`, `IKUIUserAPI.registerSetup` or `IKUIOidc.oidcSetup` function and you render screens on your own, you will need to keep on mind that the first response message after the login doesn't need to be the `verifier` type. The message type may also be `logical`, `oidc` or `form` (in the future there might be also different types). In this case you will need to combine `IKUIUserAPI.loginSetup`, `IKUIUserAPI.registerSetup` and `IKUIOidc.oidcSetup` functions to continue through the flow.
-
-```javascript
-const login = async () => {
-  const response = await IKUIUserAPI.login(email, password);
-  if (response["@type"] === "success") {
-    processTokens(response);
-  } else if (response["@type"] === "oidc") {
-    IKUIOidc.oidcSetup({
-      redirectUri: "http://localhost:3000/callback",
-    });
-  }
-};
-```
-
-## Internationalization and Localization support
-
-Localization supports
-
-- All the UI messages
-- All the error messages
-
-To enable localization, import it from `@indykiteone/jarvis-sdk-web/lib/services/core/locale/<ChosenLocale>`
-and pass it into the init function as `localeConfig`.
-
-Example:
-
-```javascript
-import { csCZLocale } from "@indykiteone/jarvis-sdk-web/lib/services/core/locale/cs-CZ";
-
-IKUIInit({
-  baseUri: process.env.REACT_APP_BASE_URI,
-  applicationId: process.env.REACT_APP_APPLICATION_ID,
-  tenantId: process.env.REACT_APP_TENANT_ID,
-  localeConfig: csCZLocale,
-});
-```
-
-See folder `@indykiteone/jarvis-sdk-web/lib/services/core/locale/` for the available locales.
-
-### Create your own locale
-
-In case your language is not yet supported, you can create your own locale object and translations.
-In case you would not include the translation for all messages (for example errors), fallback to English
-is used.
-
-Example locale object:
-
-```javascript
-const ourLocale = {
-  locale: "en-US", // String with BCP 47 language tag
-  messages: {
-    "uisdk.general.password": "Password",
-    "uisdk.general.email": "Email Address",
-    "uisdk.general.error": "Oops something went wrong. Please try again.",
-  },
-};
-```
-
-See the file `lib/services/core/locale/src/en.json` for list of all keys.
 
 ## TypeScript
 

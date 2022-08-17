@@ -20,6 +20,7 @@ type onRenderComponent =
       componentType: "form",
       formComponentType: string, // something like "username", "email", "password", "passwordCheck", ...
       label: string,
+      fieldContext: any,
       context: any,
     ) => HTMLElement | undefined)
   | ((
@@ -28,6 +29,7 @@ type onRenderComponent =
       formComponentType: "submit",
       handleClick: () => Promise<void>,
       label: string,
+      context: any,
     ) => HTMLElement | undefined)
   | ((
       defaultComponent: HTMLElement,
@@ -193,7 +195,6 @@ type renderForm = (props: {
     [optionId: string]: string;
   };
   otpToken?: string;
-  termsAgreementSectionContent?: string;
 }) => void;
 
 type renderForgotPasswordForm = (props: {
@@ -314,12 +315,30 @@ interface IKUIUserAPI {
   */
   logoutCurrentUser: logoutCurrentUser;
   logoutUser: logoutUser;
+  /**
+    @deprecated
+  */
   login: login;
   getValidAccessToken: getValidAccessToken;
+  /**
+    @deprecated
+  */
   register: register;
+  /**
+    @deprecated
+  */
   sendResetPasswordEmail: sendResetPasswordEmail;
+  /**
+    @deprecated
+  */
   sendNewPassword: sendNewPassword;
+  /**
+    @deprecated
+  */
   loginSetup: loginSetup;
+  /**
+    @deprecated
+  */
   registerSetup: registerSetup;
   refreshAccessToken: refreshAccessToken;
 }
@@ -344,7 +363,7 @@ type singleOidcSetupInput = {
 
 type singleOidcSetup = (singleOidcSetupInput) => void;
 type oidcCallback = () => Promise<DataTokenResponseType>;
-type handleOidcOriginalParamsAndRedirect = () => void;
+type handleOidcOriginalParamsAndRedirect = (redirectTo: string = "/login") => void;
 type initOidcAuthorizationRequest = (
   oauth2Host: string,
   queryParams: Record<string, string>,
@@ -356,7 +375,13 @@ interface IKUIOidc {
   singleOidcSetup: singleOidcSetup;
   oidcCallback: oidcCallback;
   handleOidcOriginalParamsAndRedirect: handleOidcOriginalParamsAndRedirect;
+  /**
+   * @deprecated
+   */
   initOidcAuthorizationRequest: initOidcAuthorizationRequest;
+  /**
+   * @deprecated
+   */
   handleOauth2Callback: handleOauth2Callback;
 }
 

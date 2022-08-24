@@ -41,6 +41,8 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SERVICE_KEY_BQ }}
       - name: Publish Deployment Metadata
+        env:
+          BIGQUERY_TABLE: jarvis-dev-268314.deployment_analytics.deployment_events
         if: ${{ always() }}
         uses: indykite/metadata-publisher@v0
         with:

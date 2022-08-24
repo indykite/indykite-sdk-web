@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.3](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.2...v0.2.3) (2022-08-24)
+
+
+### Bug Fixes
+
+* remove hardcoded actions ([c1263a6](https://github.com/indykite/jarvis-sdk-web/commit/c1263a6b76380f757d9986f2237d622eb6060d8d))
+* render forms in more dynamic way ([966f707](https://github.com/indykite/jarvis-sdk-web/commit/966f707bbac4ee695d8a3d613b7b37ba4ae28389))
+
 ## [0.2.2](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.1...v0.2.2) (2022-08-09)
 
 

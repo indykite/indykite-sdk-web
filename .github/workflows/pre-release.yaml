@@ -3,6 +3,11 @@ on:
   pull_request:
     types:
       - labeled
+
+permissions:
+  contents: "read"
+  id-token: "write"
+
 jobs:
   pre-release:
     if: ${{ github.event.label.name == 'alpha' }}
@@ -17,6 +22,7 @@ jobs:
         with:
           node-version: "12.x"
           registry-url: "https://registry.npmjs.org"
+
       - run: |
           npm install
           SHORT_SHA="$(git rev-parse --short HEAD)"
@@ -26,8 +32,10 @@ jobs:
           git config --global user.email "releaser@indykite.com"
           git config --global user.name "Release bot"
           npm version "$NEXT_VERSION"
+
       - name: "Build the dist package"
         run: npm run-script build
+
       - name: "Verify es support of dist package"
         run: npm run-script check-es
 
@@ -35,11 +43,15 @@ jobs:
         run: npm publish --access public --tag alpha
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Authenticate to Google Cloud
+        id: auth
         uses: google-github-actions/auth@v0
         if: ${{ always() }}
         with:
-          credentials_json: ${{ secrets.GCP_SERVICE_KEY_BQ }}
+          workload_identity_provider: "projects/699926043561/locations/global/workloadIdentityPools/github-dev/providers/github-dev-provider"
+          service_account: "jarvis-sdk-web@jarvis-dev-268314.iam.gserviceaccount.com"
+
       - name: Publish Deployment Metadata
         env:
           BIGQUERY_TABLE: jarvis-dev-268314.deployment_analytics.deployment_events

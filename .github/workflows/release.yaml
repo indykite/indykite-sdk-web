@@ -5,6 +5,12 @@ on:
       - master
 env:
   BIGQUERY_TABLE: jarvis-dev-268314.deployment_analytics.deployment_events
+
+permissions:
+  contents: "write"
+  id-token: "write"
+  pull-requests: "write"
+
 jobs:
   release-please:
     name: Prepare Release notes
@@ -20,26 +26,33 @@ jobs:
           package-name: jarvis-sdk-web
           bump-minor-pre-major: true
           bump-patch-for-minor-pre-major: true
+
       - uses: actions/checkout@v2
         if: ${{ steps.release-please.outputs.release_created }}
+
       - uses: actions/setup-node@v2
         with:
           node-version: "12.x"
           registry-url: "https://registry.npmjs.org"
         if: ${{ steps.release-please.outputs.release_created }}
+
       - run: npm install
         if: ${{ steps.release-please.outputs.release_created }}
+
       - name: "Build the dist package"
         run: npm run-script build
         if: ${{ steps.release-please.outputs.release_created }}
+
       - name: "Verify es support of dist package"
         run: npm run-script check-es
         if: ${{ steps.release-please.outputs.release_created }}
+
       - name: "Publish the package"
         if: ${{ steps.release-please.outputs.release_created }}
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
       - name: Get Version
         if: ${{ steps.release-please.outputs.release_created }}
         run: |
@@ -47,10 +60,13 @@ jobs:
           echo "VERSION=$VERSION" >> $GITHUB_ENV
 
       - name: Authenticate to Google Cloud
+        id: auth
         uses: google-github-actions/auth@v0
         if: ${{ always() && steps.release-please.outputs.release_created }}
         with:
-          credentials_json: ${{ secrets.GCP_SERVICE_KEY_BQ }}
+          workload_identity_provider: "projects/699926043561/locations/global/workloadIdentityPools/github-dev/providers/github-dev-provider"
+          service_account: "jarvis-sdk-web@jarvis-dev-268314.iam.gserviceaccount.com"
+
       - name: Publish Deployment Metadata
         if: ${{ always() && steps.release-please.outputs.release_created }}
         uses: indykite/metadata-publisher@v0

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.5](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.4...v0.2.5) (2022-09-13)
+
+
+### Bug Fixes
+
+* process callback with list of parameters ([53be768](https://github.com/indykite/jarvis-sdk-web/commit/53be768347e2c6b3bfd8fc1deb46d5a4d0ec065d))
+
 ## [0.2.4](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.3...v0.2.4) (2022-09-12)
 
 

@@ -195,6 +195,7 @@ type renderForm = (props: {
     [optionId: string]: string;
   };
   otpToken?: string;
+  actionLabels?: Record<string, string>;
 }) => void;
 
 type renderForgotPasswordForm = (props: {

@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.4](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.3...v0.2.4) (2022-09-12)
+
+
+### Features
+
+* send parameters back in oidc callback ([9d16a74](https://github.com/indykite/jarvis-sdk-web/commit/9d16a740b746c0980c12f7102a9d82bddaa6900a))
+
+
+### Bug Fixes
+
+* prettier fixes ([67e231f](https://github.com/indykite/jarvis-sdk-web/commit/67e231f7b72447dc989cbd365df526b7fc241ece))
+
 ## [0.2.3](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.2...v0.2.3) (2022-08-24)
 
 

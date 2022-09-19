@@ -172,6 +172,7 @@ type render = (props: {
 type renderForm = (props: {
   arguments?: Record<string, string>;
   renderElementSelector: string;
+  onBeforeRender?: (form: HTMLElement) => HTMLElement;
   onFail?: (error: Error) => void;
   onRenderComponent?: onRenderComponent;
   onSuccess: (arg0: DataTokenResponseType) => void;

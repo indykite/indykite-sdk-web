@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.6](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.5...v0.2.6) (2022-09-21)
+
+
+### Features
+
+* add a support for custom action labels ([ee68a21](https://github.com/indykite/jarvis-sdk-web/commit/ee68a2132561974f2b0d2a26f789aecfacfbe527))
+* add onbeforerender render property ([72c344c](https://github.com/indykite/jarvis-sdk-web/commit/72c344cb662ffacc4ec7e18e472df1ce767d14f8))
+
 ## [0.2.5](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.4...v0.2.5) (2022-09-13)
 
 

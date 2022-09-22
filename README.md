@@ -101,8 +101,11 @@ IKUIInit({
   baseUri: process.env.REACT_APP_INDY_BASE_URI,
   applicationId: process.env.REACT_APP_INDY_CLIENT_ID,
   tenantId: process.env.REACT_APP_INDY_TENANT_ID,
+  disableInlineStyles: true,
 });
 ```
+
+> You should use the `disableInlineStyles` property set to `true`, because inline styles are deprecated now. See the [CSS](#css) section in order to get more information.
 
 ### Core - UI API
 
@@ -1072,9 +1075,19 @@ const IKForm = () => {
 };
 ```
 
+## CSS
+
+Originally, the SDK was released with inline styling, but it was too difficult for developers to override the styles with custom ones. Now, inline styling is deprecated and you should import a CSS file with the styles. If you want to use our default CSS file, you can import it from the package like this:
+
+```ts
+import "@indykiteone/jarvis-sdk-web/dist/styles.css";
+```
+
+To start using this CSS approach, you need to set the `disableInlineStyles` property in your `IKUIInit` call. See the [Init](#init) section.
+
 ## TypeScript
 
-The library has build in types and is compatible with typescript projects.
+The library has built-in types and is compatible with typescript projects.
 
 ## SDK Development
 

@@ -5,6 +5,7 @@ export function IKUIInit(config: {
   applicationId?: string;
   baseUri?: string;
   localeConfig?: LocaleConfigType | null;
+  disableInlineStyles?: boolean;
 }): void;
 
 type onRenderComponent =
@@ -365,7 +366,7 @@ type singleOidcSetupInput = {
 
 type singleOidcSetup = (singleOidcSetupInput) => void;
 type oidcCallback = () => Promise<DataTokenResponseType>;
-type handleOidcOriginalParamsAndRedirect = (redirectTo: string = "/login") => void;
+type handleOidcOriginalParamsAndRedirect = (redirectTo?: string) => void;
 type initOidcAuthorizationRequest = (
   oauth2Host: string,
   queryParams: Record<string, string>,

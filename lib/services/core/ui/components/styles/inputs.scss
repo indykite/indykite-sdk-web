@@ -1,0 +1,29 @@
+form.IKUISDK-form {
+  & input.IKUISDK-input {
+    height: 32px;
+    font-family: "Rubik", sans-serif;
+    font-size: 11px;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    width: 100%;
+    display: block;
+    background: rgb(33, 33, 33);
+    color: rgb(237, 232, 225);
+    box-sizing: border-box;
+    margin-bottom: 4px;
+    padding: 10px 14px;
+  }
+
+  & label.IKUISDK-input-label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0px;
+    margin: -1px;
+    overflow: hidden;
+    overflow: hidden;
+    clip: rect(0px, 0px, 0px, 0px);
+    white-space: nowrap;
+  }
+}

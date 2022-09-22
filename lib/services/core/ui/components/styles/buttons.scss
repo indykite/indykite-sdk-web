@@ -1,0 +1,49 @@
+.IKUISDK-btn.oidc-button {
+  display: block;
+  width: 100%;
+  cursor: pointer;
+  font-family: "Rubik", sans-serif;
+  font-size: 11px;
+  border: none;
+  border-radius: 5px;
+  color: rgb(10, 10, 10);
+  height: 32px;
+  margin-bottom: 8px;
+  position: relative;
+  background-color: rgb(255, 255, 255);
+  text-align: left;
+  padding-left: 64px;
+
+  &.ik-provider {
+    background-color: rgb(255, 183, 82);
+    text-align: center;
+    padding-left: 0px;
+  }
+}
+
+.IKUISDK-action-btn {
+  font-family: "Rubik", sans-serif;
+  font-size: 12px;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 16px;
+
+  & a {
+    color: rgb(250, 250, 250);
+    text-decoration: none;
+  }
+}
+
+.IKUISDK-primary-btn {
+  cursor: pointer;
+  display: block;
+  margin: 16px 0;
+  width: 100%;
+  font-family: "Rubik", sans-serif;
+  font-size: 11px;
+  border-radius: 5px;
+  border: none;
+  color: rgb(10, 10, 10);
+  height: 32px;
+  background: rgb(255, 183, 82);
+}

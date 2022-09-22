@@ -1,0 +1,23 @@
+.IKUISDK-notification-container {
+  & .message-wrapper {
+    padding-bottom: 8px;
+    font-size: 9px;
+    font-weight: 300;
+    text-align: center;
+
+    & .message-content {
+      &.type-info {
+        color: rgb(250, 250, 250);
+      }
+      &.type-success {
+        color: rgb(182, 251, 145);
+      }
+      &.type-error {
+        color: rgb(240, 93, 85);
+      }
+      &.type-warn {
+        color: rgb(255, 183, 82);
+      }
+    }
+  }
+}

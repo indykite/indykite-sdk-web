@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.2.7](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.6...v0.2.7) (2022-09-29)
+
+
+### Features
+
+* add css support ([4cc2c4b](https://github.com/indykite/jarvis-sdk-web/commit/4cc2c4b849bd47cd3e7c71372f5f035ac7bad252))
+
+
+### Bug Fixes
+
+* check if password pairs match ([8c3ad1d](https://github.com/indykite/jarvis-sdk-web/commit/8c3ad1d49c627e7ed266c3fae093d7e766fa359f))
+* redirect directly when url is present ([cdf15cf](https://github.com/indykite/jarvis-sdk-web/commit/cdf15cf067ed2894df765f993a01236e87e6912d))
+
 ## [0.2.6](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.5...v0.2.6) (2022-09-21)
 
 

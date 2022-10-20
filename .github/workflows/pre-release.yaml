@@ -5,7 +5,7 @@ on:
       - labeled
 
 permissions:
-  contents: "read"
+  contents: "write"
   id-token: "write"
 
 jobs:
@@ -17,14 +17,14 @@ jobs:
       released: ${{ steps.release-please.outputs.release_created }}
       pr_number: ${{ steps.echo-pr.outputs.pr_number }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: "12.x"
           registry-url: "https://registry.npmjs.org"
 
       - run: |
-          npm install
+          npm ci
           SHORT_SHA="$(git rev-parse --short HEAD)"
           VERSION="$(cat package.json | jq -r '.version')"
           NEXT_VERSION="$(npx semver $VERSION -i patch)-alpha-$SHORT_SHA"

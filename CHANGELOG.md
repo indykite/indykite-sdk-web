@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.8](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.7...v0.2.8) (2022-10-21)
+
+
+### Bug Fixes
+
+* use action id in the oidc callback response ([b792b2b](https://github.com/indykite/jarvis-sdk-web/commit/b792b2bf42223a5a37ec445469ba928dec7990a6))
+
 ## [0.2.7](https://github.com/indykite/jarvis-sdk-web/compare/v0.2.6...v0.2.7) (2022-09-29)
 
 

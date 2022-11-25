@@ -39,7 +39,8 @@
     "crypto-js": "^4.1.1",
     "intl-messageformat": "^9.11.4",
     "query-string": "^7.1.1",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.13.9",
+    "qrcode": "1.5.1"
   },
   "devDependencies": {
     "node-polyfill-webpack-plugin": "^1.1.4",

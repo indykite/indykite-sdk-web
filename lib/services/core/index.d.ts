@@ -70,6 +70,11 @@ type onRenderSeparatorComponentFn = (
   componentType: "separator",
 ) => HTMLElement | undefined;
 
+type onRenderQrComponentFn = (
+  defaultComponent: HTMLElement,
+  componentType: "qr",
+) => HTMLElement | undefined;
+
 type onRenderComponentFn =
   | onRenderActionComponentFn
   | onRenderGeneralFormComponentFn
@@ -77,7 +82,8 @@ type onRenderComponentFn =
   | onRenderTermsAndAgreementFormComponentFn
   | onRenderOidcComponentFn
   | onRenderMessageComponentFn
-  | onRenderSeparatorComponentFn;
+  | onRenderSeparatorComponentFn
+  | onRenderQrComponentFn;
 
 interface DataTokenResponseType {
   "@type": string;

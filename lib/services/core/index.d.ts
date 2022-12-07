@@ -430,6 +430,7 @@ interface IKUIUserAPIProps {
     codeChallenge?: string,
     omitAuthorizationHeaders?: boolean,
   ) => Promise<string>;
+  isInitialized: () => boolean;
 }
 
 export const IKUIUserAPI: IKUIUserAPIProps;

@@ -93,9 +93,9 @@ A good commit message should describe what changed and why.
 
    Examples:
 
-   - `Fixes: https://github.com/indykite/jarvis/issues/42`
+   - `Fixes: https://github.com/indykite/indykite-sdk-web/issues/42`
    - `Refs: https://eslint.org/docs/rules/space-in-parens.html`
-   - `Refs: https://github.com/indykite/jarvis/pull/88`
+   - `Refs: https://github.com/indykite/indykite-sdk-web/pull/88`
 
 1. If your commit introduces a breaking change (`semver-major`), it should contain an explanation about the reason of the breaking change, which situation would trigger the breaking change and what is the exact change.
 
@@ -108,7 +108,7 @@ The body of the commit message should be one or more paragraphs, explaining
 things in more detail. Please word-wrap to keep columns to 72 characters or
 less.
 
-Fixes: https://github.com/indykite/jarvis/issues/42
+Fixes: https://github.com/indykite/indykite-sdk-web/issues/42
 Refs: https://eslint.org/docs/rules/space-in-parens.html
 ```
 

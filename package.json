@@ -1,5 +1,5 @@
 {
-  "name": "@indykiteone/jarvis-sdk-web",
+  "name": "@indykiteone/indykite-sdk-web",
   "version": "0.2.8",
   "description": "UI SDK for IndyKite.id",
   "main": "./lib/services/core/index.js",
@@ -63,10 +63,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/indykite/jarvis-sdk-web.git"
+    "url": "git+https://github.com/indykite/indykite-sdk-web.git"
   },
   "bugs": {
-    "url": "https://github.com/indykite/jarvis-sdk-web/issues"
+    "url": "https://github.com/indykite/indykite-sdk-web/issues"
   },
-  "homepage": "https://github.com/indykite/jarvis-sdk-web#readme"
+  "homepage": "https://github.com/indykite/indykite-sdk-web#readme"
 }

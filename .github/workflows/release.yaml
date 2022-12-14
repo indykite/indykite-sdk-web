@@ -23,7 +23,7 @@ jobs:
         uses: GoogleCloudPlatform/release-please-action@v3
         with:
           release-type: node
-          package-name: jarvis-sdk-web
+          package-name: indykite-sdk-web
           bump-minor-pre-major: true
           bump-patch-for-minor-pre-major: true
 

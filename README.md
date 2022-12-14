@@ -8,9 +8,9 @@ IndyKite is a cloud identity platform built to secure and manage human & non-per
 
 This library contains multiple client libraries for each service of the platform.
 
-[![NPM version](https://img.shields.io/npm/v/@indykiteone/jarvis-sdk-web.svg?style=flat-square)](https://www.npmjs.com/package/@indykiteone/jarvis-sdk-web)
-![npm type definitions](https://img.shields.io/npm/types/@indykiteone/jarvis-sdk-web?style=flat-square)
-[![codecov](https://codecov.io/gh/indykite/jarvis-sdk-web/branch/master/graph/badge.svg?token=33M4Y8GYFV)](https://codecov.io/gh/indykite/jarvis-sdk-web)
+[![NPM version](https://img.shields.io/npm/v/@indykiteone/indykite-sdk-web.svg?style=flat-square)](https://www.npmjs.com/package/@indykiteone/indykite-sdk-web)
+![npm type definitions](https://img.shields.io/npm/types/@indykiteone/indykite-sdk-web?style=flat-square)
+[![codecov](https://codecov.io/gh/indykite/indykite-sdk-web/branch/master/graph/badge.svg?token=33M4Y8GYFV)](https://codecov.io/gh/indykite/indykite-sdk-web)
 
 In order to access to the platform you must obtain an API key first.
 
@@ -34,10 +34,10 @@ Visit the IndyKite One Developer Community site for official [IndyKite documenta
 
 ## Installation
 
-##### From [npm](https://www.npmjs.com/package/@indykiteone/jarvis-sdk-web):
+##### From [npm](https://www.npmjs.com/package/@indykiteone/indykite-sdk-web):
 
 ```
-npm install @indykiteone/jarvis-sdk-web
+npm install @indykiteone/indykite-sdk-web
 ```
 
 ##### From CDN:
@@ -45,13 +45,13 @@ npm install @indykiteone/jarvis-sdk-web
 UNPKG
 
 ```javascript
-<script src="https://unpkg.com/@indykiteone/jarvis-sdk-web/dist/iksdkweb.dist.js"></script>
+<script src="https://unpkg.com/@indykiteone/indykite-sdk-web/dist/iksdkweb.dist.js"></script>
 ```
 
 jsDelivr
 
 ```javascript
-<script src="https://cdn.jsdelivr.net/npm/@indykiteone/jarvis-sdk-web/dist/iksdkweb.dist.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@indykiteone/indykite-sdk-web/dist/iksdkweb.dist.js"></script>
 ```
 
 ### Browser support
@@ -62,7 +62,7 @@ Is build with support for all recent versions of major browsers (Chrome, FF, Saf
 
 #### import version
 
-`import { IKUIInit } from "@indykiteone/jarvis-sdk-web";` Is not prebuild. It's necessary for you to build your application using tools like webpack and babel.
+`import { IKUIInit } from "@indykiteone/indykite-sdk-web";` Is not prebuild. It's necessary for you to build your application using tools like webpack and babel.
 If you are building apps with frameworks like React, Angular or Vue.js. You have most likely already setup
 a build process (often automatically by the framework), and you don't need to do anything.
 
@@ -77,7 +77,7 @@ In case of using the dist package. All functions are exported under the `IK` key
 For example:
 
 ```html
-<script src="https://unpkg.com/@indykiteone/jarvis-sdk-web/dist/iksdkweb.dist.js"></script>
+<script src="https://unpkg.com/@indykiteone/indykite-sdk-web/dist/iksdkweb.dist.js"></script>
 <script>
  IK.IKUIInit({});
 </script
@@ -95,7 +95,7 @@ To use the functions from the library you first need to initialize the lib.
 This should be done in entry point to the app.
 
 ```javascript
-import { IKUIInit } from "@indykiteone/jarvis-sdk-web";
+import { IKUIInit } from "@indykiteone/indykite-sdk-web";
 
 IKUIInit({
   baseUri: process.env.REACT_APP_INDY_BASE_URI,
@@ -109,7 +109,7 @@ IKUIInit({
 
 ### Core - UI API
 
-To use the UI elements provided by the @indykiteone/jarvis-sdk-web library, make sure you've completed initializing the library as described above.
+To use the UI elements provided by the @indykiteone/indykite-sdk-web library, make sure you've completed initializing the library as described above.
 As all render functions do network setup calls, they should be treated as side effects in the JS framework of your application.
 
 ## Rendering login/registration screen with different auth flows
@@ -122,7 +122,7 @@ This authentication flow doesn't allow you to do anything special but registerin
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -156,7 +156,7 @@ This authetication flow lets you log in with a username and password.
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -188,7 +188,7 @@ const IKForm = () => {
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -228,7 +228,7 @@ You need to put the following code to your login page, e.g. `https://yourpage.co
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -257,7 +257,7 @@ This code will display a Google option to log in. After clicking the option, you
 
 ```ts
 import React from "react";
-import { IKUIOidc } from "@indykiteone/jarvis-sdk-web";
+import { IKUIOidc } from "@indykiteone/indykite-sdk-web";
 
 // This is where Google and other providers can redirect you
 const Callback = () => {
@@ -291,7 +291,7 @@ You need to put this code in your login page, for example, `https://yourpage.com
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -326,7 +326,7 @@ And this code to your callback page you set as the Redirect URL in your OIDC pro
 
 ```ts
 import React from "react";
-import { IKUIOidc } from "@indykiteone/jarvis-sdk-web";
+import { IKUIOidc } from "@indykiteone/indykite-sdk-web";
 
 // This is where FB, Google and other providers can redirect you
 const Callback = () => {
@@ -360,7 +360,7 @@ Use the switch node to merge mutliple authentication flows into one. If you want
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -399,7 +399,7 @@ It checks whether the input object has a property `flow` set to `register`. You 
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -440,7 +440,7 @@ In the beginning, you can call `IKUICore.renderForm` as usual. The login screen 
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -472,7 +472,7 @@ When a user sends a request to reset their password, they will get an email cont
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKResetPasswordForm = ({ referenceId }) => {
   React.useEffect(() => {
@@ -508,7 +508,7 @@ If you want to start your flow with the reset password screen, use the Switch no
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -543,7 +543,7 @@ When a user sends a request to reset his password, he will get an email containi
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKResetPasswordForm = ({ referenceId }) => {
   React.useEffect(() => {
@@ -579,7 +579,7 @@ A user can get an invitation email which contains a reference ID. You need to pa
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKResetPasswordForm = ({ referenceId }) => {
   React.useEffect(() => {
@@ -613,7 +613,7 @@ const IKResetPasswordForm = ({ referenceId }) => {
 In case you want to act as an OIDC provider, you have to call the `IKUIOidc.handleOidcOriginalParamsAndRedirect` function before you start your auth flow.
 
 ```ts
-import { IKUIOidc } from "@indykiteone/jarvis-sdk-web";
+import { IKUIOidc } from "@indykiteone/indykite-sdk-web";
 
 const pathToLogin = "/login";
 IKUIOidc.handleOidcOriginalParamsAndRedirect(pathToLogin);
@@ -644,7 +644,7 @@ This example shows how to add a custom class name to the input element.
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -685,7 +685,7 @@ This example shows how to replace an original submit button element with a total
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -730,7 +730,7 @@ Here you can see how to replace the default `<a>` link with a custom `<button>` 
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -776,7 +776,7 @@ const IKForm = () => {
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -815,7 +815,7 @@ const IKForm = () => {
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -859,7 +859,7 @@ an option to customize it as you wish. For example, you can put your Terms & Con
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -913,7 +913,7 @@ const IKForm = () => {
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const policiesEl = document.createElement("div");
 
@@ -998,7 +998,7 @@ In the authentication builder in action nodes, you can specify your own locale k
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -1031,7 +1031,7 @@ The redirection is not directly supported, because it's not necessary (and it ca
 
 ```ts
 import ReactDOM from "react-dom";
-import { IKUICore } from "@indykiteone/jarvis-sdk-web";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
 
 const IKForm = () => {
   React.useEffect(() => {
@@ -1080,7 +1080,7 @@ const IKForm = () => {
 Originally, the SDK was released with inline styling, but it was too difficult for developers to override the styles with custom ones. Now, inline styling is deprecated and you should import a CSS file with the styles. If you want to use our default CSS file, you can import it from the package like this:
 
 ```ts
-import "@indykiteone/jarvis-sdk-web/dist/styles.css";
+import "@indykiteone/indykite-sdk-web/dist/styles.css";
 ```
 
 To start using this CSS approach, you need to set the `disableInlineStyles` property in your `IKUIInit` call. See the [Init](#init) section.
@@ -1127,7 +1127,7 @@ See file `.github/export-settings.png` for the export settings from localise.
 
 ## Roadmap
 
-Checkout our roadmap on our [issues page](https://github.com/indykite/jarvis-sdk-web/issues)
+Checkout our roadmap on our [issues page](https://github.com/indykite/indykite-sdk-web/issues)
 
 ## Contributing
 
@@ -1137,7 +1137,7 @@ Checkout our roadmap on our [issues page](https://github.com/indykite/jarvis-sdk
 
 We'd love to have you connect with us or other community developers over at [IndyKite.one](https://indykite.one)
 
-Feel free to file a bug, submit an issue or give us feedback on our [issues page](https://github.com/indykite/jarvis-sdk-web/issues)
+Feel free to file a bug, submit an issue or give us feedback on our [issues page](https://github.com/indykite/indykite-sdk-web/issues)
 
 ## Vulnerability Reporting
 

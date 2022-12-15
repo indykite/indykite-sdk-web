@@ -3,11 +3,9 @@ module.exports = {
   rules: {
     //   0 - Disabled, 1 - Warning, 2 - Error
     "body-max-line-length": [2, "always", 72],
-    "body-leading-blank": [1, "always"],
     "header-max-length": [2, "always", 72],
     "subject-max-length": [2, "always", 50],
-    "subject-full-stop": [2, "never", "."],
-    "subject-case": [2, "always", ["lower-case"]],
+    // Configurable per each repository
     "type-enum": [
       2,
       "always",
@@ -42,8 +40,8 @@ module.exports = {
         "schema",
         "test",
         "master",
+        "develop",
         "examples",
-        "deps",
       ],
     ],
   },

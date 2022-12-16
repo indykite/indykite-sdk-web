@@ -4,15 +4,17 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: [
-    path.resolve(__dirname, "lib/services/core/index.js"),
     path.resolve(__dirname, "lib/services/core/exports/styles.scss"),
+    path.resolve(__dirname, "lib/services/core/index.js"),
   ],
   plugins: [new MiniCssExtractPlugin({ filename: "styles.css" }), new NodePolyfillPlugin()],
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "iksdkweb.dist.js",
-    library: "IK",
-    libraryTarget: "umd",
+    library: {
+      name: "IK",
+      type: "umd",
+    },
   },
   module: {
     rules: [

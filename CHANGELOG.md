@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.9](https://github.com/indykite/indykite-sdk-web/compare/v0.2.8...v0.2.9) (2022-12-19)
+
+
+### Bug Fixes
+
+* fix package build ([d93dcb3](https://github.com/indykite/indykite-sdk-web/commit/d93dcb3d8939886ad951b9794dca942f868fa44e))
+
 ## [0.2.8](https://github.com/indykite/indykite-sdk-web/compare/v0.2.7...v0.2.8) (2022-10-21)
 
 

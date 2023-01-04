@@ -1,66 +1,85 @@
 /// <reference types="./locale/locale" />
 
-export function IKUIInit(config: {
+interface InitProps {
   tenantId?: string;
   applicationId?: string;
   baseUri?: string;
   localeConfig?: LocaleConfigType | null;
   disableInlineStyles?: boolean;
-}): void;
+}
 
-type onRenderComponent =
-  | ((
-      defaultComponent: HTMLElement,
-      componentType: "action",
-      actionType: "forgotten" | "register" | "alreadyRegistered",
-      label: string,
-      link: string,
-    ) => HTMLElement | undefined)
-  | ((
-      defaultComponent: HTMLElement,
-      componentType: "form",
-      formComponentType: string, // something like "username", "email", "password", "passwordCheck", ...
-      label: string,
-      fieldContext: any,
-      context: any,
-    ) => HTMLElement | undefined)
-  | ((
-      defaultComponent: HTMLElement,
-      componentType: "form",
-      formComponentType: "submit",
-      handleClick: () => Promise<void>,
-      label: string,
-      context: any,
-    ) => HTMLElement | undefined)
-  | ((
-      defaultComponent: HTMLElement,
-      componentType: "form",
-      formComponentType: "termsAndAgreement",
-      htmlString: string,
-    ) => HTMLElement | undefined)
-  | ((
-      defaultComponent: HTMLElement,
-      componentType: "oidcButton",
-      provider: string,
-      handleClick: () => Promise<void>,
-      id: string,
-      url: string,
-    ) => HTMLElement | undefined)
-  | ((
-      defaultComponent: HTMLElement,
-      componentType: "message",
-      context: {
-        msg?: string;
-        label?: string;
-        style: string;
-        id?: string;
-        extensions?: string;
-        ui: string;
-      },
-    ) => HTMLElement | undefined)
-  | ((defaultComponent: HTMLElement, componentType: "separator") => HTMLElement | undefined);
+export function IKUIInit(config: InitProps): void;
 
-type DataTokenResponseType = {
+type onRenderActionComponentFn = (
+  defaultComponent: HTMLElement,
+  componentType: "action",
+  actionType: "forgotten" | "register" | "alreadyRegistered",
+  label: string,
+  link: string,
+) => HTMLElement | undefined;
+
+type onRenderGeneralFormComponentFn = (
+  defaultComponent: HTMLElement,
+  componentType: "form",
+  formComponentType: string, // something like "username", "email", "password", "passwordCheck", ...
+  label: string,
+  fieldContext: any,
+  context: any,
+) => HTMLElement | undefined;
+
+type onRenderSubmitFormComponentFn = (
+  defaultComponent: HTMLElement,
+  componentType: "form",
+  formComponentType: "submit",
+  handleClick: () => Promise<void>,
+  label: string,
+  context: any,
+) => HTMLElement | undefined;
+
+type onRenderTermsAndAgreementFormComponentFn = (
+  defaultComponent: HTMLElement,
+  componentType: "form",
+  formComponentType: "termsAndAgreement",
+  htmlString: string,
+) => HTMLElement | undefined;
+
+type onRenderOidcComponentFn = (
+  defaultComponent: HTMLElement,
+  componentType: "oidcButton",
+  provider: string,
+  handleClick: () => Promise<void>,
+  id: string,
+  url: string,
+) => HTMLElement | undefined;
+
+type onRenderMessageComponentFn = (
+  defaultComponent: HTMLElement,
+  componentType: "message",
+  context: {
+    msg?: string;
+    label?: string;
+    style: string;
+    id?: string;
+    extensions?: string;
+    ui: string;
+  },
+) => HTMLElement | undefined;
+
+type onRenderSeparatorComponentFn = (
+  defaultComponent: HTMLElement,
+  componentType: "separator",
+) => HTMLElement | undefined;
+
+type onRenderComponentFn =
+  | onRenderActionComponentFn
+  | onRenderGeneralFormComponentFn
+  | onRenderSubmitFormComponentFn
+  | onRenderTermsAndAgreementFormComponentFn
+  | onRenderOidcComponentFn
+  | onRenderMessageComponentFn
+  | onRenderSeparatorComponentFn;
+
+interface DataTokenResponseType {
   "@type": string;
   token: string;
   refresh_token: string;
@@ -68,12 +87,15 @@ type DataTokenResponseType = {
   expiration_time: number;
   expires_in: number;
   redirect_to?: string;
-};
+}
 
-type renderLogin = (props: {
+/**
+ * @hidden
+ */
+interface RenderLoginProps {
   renderElementSelector: string;
   onLoginFail?: (error: Error) => void;
-  onRenderComponent?: onRenderComponent;
+  onRenderComponent?: onRenderComponentFn;
   onSuccessLogin: (arg0: DataTokenResponseType) => void;
   redirectUri?: string;
   registrationPath?: string;
@@ -88,12 +110,15 @@ type renderLogin = (props: {
   loginApp?: {
     [optionId: string]: string;
   };
-}) => void;
+}
 
-type renderRegister = (props: {
+/**
+ * @hidden
+ */
+interface RenderRegisterProps {
   renderElementSelector: string;
   onRegistrationFail?: (error: Error) => void;
-  onRenderComponent?: onRenderComponent;
+  onRenderComponent?: onRenderComponentFn;
   onSuccessRegistration: (arg0: DataTokenResponseType) => void;
   redirectUri?: string;
   termsAgreementSectionContent?: string;
@@ -123,13 +148,16 @@ type renderRegister = (props: {
    * @deprecated
    */
   passwordCheckInputNote?: string;
-}) => void;
+}
 
-type render = (props: {
+/**
+ * @hidden
+ */
+interface RenderProps {
   arguments?: Record<string, string>;
   renderElementSelector: string;
   onFail?: (error: Error) => void;
-  onRenderComponent?: onRenderComponent;
+  onRenderComponent?: onRenderComponentFn;
   onSuccess: (arg0: DataTokenResponseType) => void;
   redirectUri?: string;
   loginPath?: string;
@@ -168,14 +196,14 @@ type render = (props: {
    * @deprecated
    */
   passwordCheckInputNote?: string;
-}) => void;
+}
 
-type renderForm = (props: {
+interface RenderFormProps {
   arguments?: Record<string, string>;
   renderElementSelector: string;
   onBeforeRender?: (form: HTMLElement) => HTMLElement;
   onFail?: (error: Error) => void;
-  onRenderComponent?: onRenderComponent;
+  onRenderComponent?: onRenderComponentFn;
   onSuccess: (arg0: DataTokenResponseType) => void;
   redirectUri?: string;
   labels?: {
@@ -198,9 +226,12 @@ type renderForm = (props: {
   };
   otpToken?: string;
   actionLabels?: Record<string, string>;
-}) => void;
+}
 
-type renderForgotPasswordForm = (props: {
+/**
+ * @hidden
+ */
+interface RenderForgotPasswordFormProps {
   renderElementSelector: string;
   loginPath?: string;
   labels?: {
@@ -208,9 +239,12 @@ type renderForgotPasswordForm = (props: {
     submitButton?: string;
     backToLogin?: string;
   };
-}) => void;
+}
 
-type renderSetNewPasswordForm = (props: {
+/**
+ * @hidden
+ */
+interface RenderSetNewPasswordFormProps {
   token: string;
   renderElementSelector: string;
   validatePassword?: (arg0: string) => boolean;
@@ -219,56 +253,82 @@ type renderSetNewPasswordForm = (props: {
     confirmNewPassword?: string;
     submitButton?: string;
   };
-}) => void;
-
-interface IKUICore {
-  /**
-   * @deprecated Use `renderForm` function instead.
-   */
-  renderLogin: renderLogin;
-  /**
-   * @deprecated Use `renderForm` function instead.
-   */
-  renderRegister: renderRegister;
-  /**
-   * @deprecated Use `renderForm` function instead.
-   */
-  render: render;
-  renderForm: renderForm;
-  /**
-   * @deprecated Use `renderForm` function instead.
-   */
-  renderForgotPasswordForm: renderForgotPasswordForm;
-  /**
-   * @deprecated Use `renderForm` function instead.
-   */
-  renderSetNewPasswordForm: renderSetNewPasswordForm;
 }
 
-export const IKUICore: IKUICore;
+/**
+ * @deprecated Use `renderForm` function instead.
+ * @hidden
+ */
+type renderSetNewPasswordFormFn = (props: RenderSetNewPasswordFormProps) => void;
+/**
+ * @deprecated Use `renderForm` function instead.
+ * @hidden
+ */
+type renderLoginFn = (props: RenderLoginProps) => void;
+/**
+ * @deprecated Use `renderForm` function instead.
+ * @hidden
+ */
+type renderRegisterFn = (props: RenderRegisterProps) => void;
+/**
+ * @deprecated Use `renderForm` function instead.
+ * @hidden
+ */
+type renderFn = (props: RenderProps) => void;
+/**
+ * @deprecated Use `renderForm` function instead.
+ * @hidden
+ */
+type renderForgotPasswordFormFn = (props: RenderForgotPasswordFormProps) => void;
 
-type ErrorObjectType = {
+interface IKUICoreProps {
+  renderForm: (props: RenderFormProps) => void;
+  /**
+   * @deprecated Use `renderForm` function instead.
+   */
+  renderSetNewPasswordForm: renderSetNewPasswordFormFn;
+  /**
+   * @deprecated Use `renderForm` function instead.
+   */
+  renderLogin: renderLoginFn;
+  /**
+   * @deprecated Use `renderForm` function instead.
+   */
+  renderRegister: renderRegisterFn;
+  /**
+   * @deprecated Use `renderForm` function instead.
+   */
+  render: renderFn;
+  /**
+   * @deprecated Use `renderForm` function instead.
+   */
+  renderForgotPasswordForm: renderForgotPasswordFormFn;
+}
+
+export const IKUICore: IKUICoreProps;
+
+interface ErrorObjectType {
   code: string;
   label?: string;
   msg: string;
   extensions: Record<string, string | number>;
-};
+}
 
-export type ErrorResponseType = {
+export interface ErrorResponseType {
   type: string;
   "~error": ErrorObjectType;
-};
+}
 
-export type SetupOptsType = {
+export interface SetupOptsType {
   "~ord": number;
   "@type": string;
   "@id": string;
   prv?: string;
   fields?: Array<Record<string, any>>;
   opts?: Array<Record<string, any>>;
-};
+}
 
-export type LoginSetupDataType = {
+export interface LoginSetupDataType {
   "@type": string;
   op?: string;
   prv?: string;
@@ -277,115 +337,141 @@ export type LoginSetupDataType = {
   "~thread": {
     thid: string;
   };
-};
+}
 
-type logoutCurrentUser = () => Promise<boolean>;
-type logoutUser = (userId?: string) => Promise<boolean>;
-type logoutAllUsers = () => Promise<{ [userId: string]: boolean }>;
-type login = (
+interface SetupRequestConfig {
+  otpToken?: string;
+}
+
+/**
+  @deprecated
+  @hidden
+*/
+type logoutCurrentUserFn = () => Promise<boolean>;
+/**
+  @deprecated
+  @hidden
+*/
+type loginFn = (
   email: string,
   password: string,
   setupData: LoginSetupDataType,
 ) => Promise<DataTokenResponseType | Error>;
-type isAuthenticated = (userId?: string) => Promise<boolean>;
-type getValidAccessToken = (options?: {
-  refreshToken?: string;
-  userId?: string;
-}) => Promise<string>;
-type refreshAccessToken = (
-  refreshToken?: string,
-  codeChallenge?: string,
-  omitAuthorizationHeaders?: boolean,
-) => Promise<string>;
-type register = (email: string, password: string) => Promise<DataTokenResponseType>;
-type sendResetPasswordEmail = (email: string) => Promise<{ "@type": string }>;
-type sendNewPassword = (
+/**
+  @deprecated
+  @hidden
+*/
+type registerFn = (email: string, password: string) => Promise<DataTokenResponseType>;
+/**
+  @deprecated
+  @hidden
+*/
+type sendResetPasswordEmailFn = (email: string) => Promise<{ "@type": string }>;
+/**
+  @deprecated
+  @hidden
+*/
+type sendNewPasswordFn = (
   referenceId: string,
   newPassword: string,
 ) => Promise<DataTokenResponseType>;
+/**
+  @deprecated
+  @hidden
+*/
+type loginSetupFn = (config?: SetupRequestConfig) => Promise<LoginSetupDataType>;
+/**
+  @deprecated
+  @hidden
+*/
+type registerSetupFn = (config?: SetupRequestConfig) => Promise<LoginSetupDataType>;
 
-type setupRequestConfig = {
-  otpToken?: string;
-};
-type loginSetup = (config?: setupRequestConfig) => Promise<LoginSetupDataType>;
-type registerSetup = (config?: setupRequestConfig) => Promise<LoginSetupDataType>;
-
-interface IKUIUserAPI {
-  isAuthenticated: isAuthenticated;
-  logoutAllUsers: logoutAllUsers;
+interface IKUIUserAPIProps {
+  isAuthenticated: (userId?: string) => Promise<boolean>;
+  logoutAllUsers: () => Promise<{ [userId: string]: boolean }>;
+  /**
+    @deprecated Use `logoutUser` instead.
+  */
+  logoutCurrentUser: logoutCurrentUserFn;
+  logoutUser: (userId?: string) => Promise<boolean>;
   /**
     @deprecated
   */
-  logoutCurrentUser: logoutCurrentUser;
-  logoutUser: logoutUser;
+  login: loginFn;
+  getValidAccessToken: (options?: { refreshToken?: string; userId?: string }) => Promise<string>;
   /**
     @deprecated
   */
-  login: login;
-  getValidAccessToken: getValidAccessToken;
+  register: registerFn;
   /**
     @deprecated
   */
-  register: register;
+  sendResetPasswordEmail: sendResetPasswordEmailFn;
   /**
     @deprecated
   */
-  sendResetPasswordEmail: sendResetPasswordEmail;
+  sendNewPassword: sendNewPasswordFn;
   /**
     @deprecated
   */
-  sendNewPassword: sendNewPassword;
+  loginSetup: loginSetupFn;
   /**
     @deprecated
   */
-  loginSetup: loginSetup;
-  /**
-    @deprecated
-  */
-  registerSetup: registerSetup;
-  refreshAccessToken: refreshAccessToken;
+  registerSetup: registerSetupFn;
+  refreshAccessToken: (
+    refreshToken?: string,
+    codeChallenge?: string,
+    omitAuthorizationHeaders?: boolean,
+  ) => Promise<string>;
 }
 
-export const IKUIUserAPI: IKUIUserAPI;
+export const IKUIUserAPI: IKUIUserAPIProps;
 
-interface oidcSetup {
+type oidcSetupFn = {
   (options?: { id?: string; redirectUri?: string; threadId?: string; loginApp?: string }): void;
 
   /**
    * @deprecated Move all the parameters to an options object.
    */
   (id?: string | null, redirectUri?: string | null, threadId?: string | null): void;
-}
+};
 
-type singleOidcSetupInput = {
+interface SingleOidcSetupInput {
   "~thread": {
     thid: string;
   };
   url: string;
-};
+}
 
-type singleOidcSetup = (singleOidcSetupInput) => void;
-type oidcCallback = () => Promise<DataTokenResponseType>;
-type handleOidcOriginalParamsAndRedirect = (redirectTo?: string) => void;
-type initOidcAuthorizationRequest = (
+/**
+  @deprecated
+  @hidden
+*/
+type initOidcAuthorizationRequestFn = (
   oauth2Host: string,
   queryParams: Record<string, string>,
 ) => void;
-type handleOauth2Callback = () => void;
 
-interface IKUIOidc {
-  oidcSetup: oidcSetup;
-  singleOidcSetup: singleOidcSetup;
-  oidcCallback: oidcCallback;
-  handleOidcOriginalParamsAndRedirect: handleOidcOriginalParamsAndRedirect;
+/**
+  @deprecated
+  @hidden
+*/
+type handleOauth2CallbackFn = () => void;
+
+interface IKUIOidcProps {
+  oidcSetup: oidcSetupFn;
+  singleOidcSetup: (input: SingleOidcSetupInput) => void;
+  oidcCallback: () => Promise<DataTokenResponseType>;
+  handleOidcOriginalParamsAndRedirect: (redirectTo?: string) => void;
   /**
    * @deprecated
    */
-  initOidcAuthorizationRequest: initOidcAuthorizationRequest;
+  initOidcAuthorizationRequest: initOidcAuthorizationRequestFn;
   /**
    * @deprecated
    */
-  handleOauth2Callback: handleOauth2Callback;
+  handleOauth2Callback: handleOauth2CallbackFn;
 }
 
-export const IKUIOidc: IKUIOidc;
+export const IKUIOidc: IKUIOidcProps;

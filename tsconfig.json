@@ -1,0 +1,4 @@
+{
+  "include": ["./lib/services/core/index.d.ts"],
+  "exclude": ["node_modules"]
+}

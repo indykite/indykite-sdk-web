@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.10](https://github.com/indykite/indykite-sdk-web/compare/v0.2.9...v0.2.10) (2023-01-09)
+
+
+### Features
+
+* qr code support ([e6ab4d2](https://github.com/indykite/indykite-sdk-web/commit/e6ab4d23b497605fd27e6b311dfe71d3a203058b))
+
 ## [0.2.9](https://github.com/indykite/indykite-sdk-web/compare/v0.2.8...v0.2.9) (2022-12-19)
 
 

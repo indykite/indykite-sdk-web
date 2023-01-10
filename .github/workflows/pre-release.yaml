@@ -11,6 +11,7 @@ permissions:
 jobs:
   pre-release:
     if: ${{ github.event.label.name == 'alpha' }}
+    environment: alpha
     name: Prepare Alpha Pre-release
     runs-on: ubuntu-latest
     outputs:
@@ -43,22 +44,3 @@ jobs:
         run: npm publish --access public --tag alpha
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Authenticate to Google Cloud
-        id: auth
-        uses: google-github-actions/auth@v0
-        if: ${{ always() }}
-        with:
-          workload_identity_provider: "projects/699926043561/locations/global/workloadIdentityPools/github-dev/providers/github-dev-provider"
-          service_account: "jarvis-sdk-web@jarvis-dev-268314.iam.gserviceaccount.com"
-
-      - name: Publish Deployment Metadata
-        env:
-          BIGQUERY_TABLE: jarvis-dev-268314.deployment_analytics.deployment_events
-        if: ${{ always() }}
-        uses: indykite/metadata-publisher@v0
-        with:
-          version: ${{ env.VERSION }}
-          status: ${{ job.status }}
-          bigquery_table: ${{ env.BIGQUERY_TABLE }}
-          env: alpha

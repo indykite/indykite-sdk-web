@@ -1,0 +1,21 @@
+name: Deployment
+
+concurrency:
+  group: deployment
+  cancel-in-progress: true
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - CHANGELOG.md
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: npm release
+        run: |
+          echo "Package was publicly released to npm"

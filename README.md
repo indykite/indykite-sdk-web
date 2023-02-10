@@ -468,7 +468,7 @@ const IKForm = () => {
 };
 ```
 
-When a user sends a request to reset their password, they will get an email containing a reference ID in the link confirming the password resent. You need to extract this ID from the URL and pass it to the `IKUICore.renderForm` function as an `otpToken` property.
+When a user sends a request to reset their password, they will get an email containing a reference ID in the link confirming the password resent. You need to extract this ID from the URL and pass it to the `IKUICore.renderForm` function as an `token` property.
 
 ```ts
 import ReactDOM from "react-dom";
@@ -488,7 +488,7 @@ const IKResetPasswordForm = ({ referenceId }) => {
         onFail: (error) => {
           console.error(error);
         },
-        otpToken: referenceId,
+        token: referenceId,
       });
     }
   }, [referenceId]);
@@ -539,7 +539,7 @@ const IKForm = () => {
 };
 ```
 
-When a user sends a request to reset his password, he will get an email containing a reference ID in the link confirming the password resetting. You need to extract this ID from the URL and pass it to the `IKUICore.renderForm` function as an `otpToken` property.
+When a user sends a request to reset his password, he will get an email containing a reference ID in the link confirming the password resetting. You need to extract this ID from the URL and pass it to the `IKUICore.renderForm` function as an `token` property.
 
 ```ts
 import ReactDOM from "react-dom";
@@ -559,7 +559,7 @@ const IKResetPasswordForm = ({ referenceId }) => {
         onFail: (error) => {
           console.error(error);
         },
-        otpToken: referenceId,
+        token: referenceId,
       });
     }
   }, [referenceId]);
@@ -575,7 +575,7 @@ const IKResetPasswordForm = ({ referenceId }) => {
 ### Log in with an OTP token
 
 ![](/assets/invitation.png)
-A user can get an invitation email which contains a reference ID. You need to pass this ID the same way as you did in the [Reset password](#using-an-action-clicking-on-did-you-forgot-you-password-button) flow, and that's to use this ID as the `otpToken` property. This will cause your authentication to start with the Input Invitation node.
+A user can get an invitation email which contains a reference ID. You need to pass this ID the same way as you did in the [Reset password](#using-an-action-clicking-on-did-you-forgot-you-password-button) flow, and that's to use this ID as the `token` property. This will cause your authentication to start with the Input Invitation node.
 
 ```ts
 import ReactDOM from "react-dom";
@@ -595,7 +595,7 @@ const IKResetPasswordForm = ({ referenceId }) => {
         onFail: (error) => {
           console.error(error);
         },
-        otpToken: referenceId,
+        token: referenceId,
       });
     }
   }, [referenceId]);

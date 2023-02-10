@@ -184,7 +184,11 @@ interface RenderProps {
   loginApp?: {
     [optionId: string]: string;
   };
+  /**
+   * @deprecated Use `token` property instead.
+   */
   otpToken?: string;
+  token?: string;
   termsAgreementSectionContent?: string;
   validatePassword?: (arg0: string) => boolean;
   /**
@@ -230,7 +234,11 @@ interface RenderFormProps {
   loginApp?: {
     [optionId: string]: string;
   };
+  /**
+   * @deprecated Use `token` property instead.
+   */
   otpToken?: string;
+  token?: string;
   actionLabels?: Record<string, string>;
 }
 
@@ -346,7 +354,11 @@ export interface LoginSetupDataType {
 }
 
 interface SetupRequestConfig {
+  /**
+   * @deprecated Use `token` property instead.
+   */
   otpToken?: string;
+  token?: string;
 }
 
 /**

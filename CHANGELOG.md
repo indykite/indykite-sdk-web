@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.11](https://github.com/indykite/indykite-sdk-web/compare/v0.2.10...v0.2.11) (2023-02-13)
+
+
+### Features
+
+* add webauthn support ([d9bc415](https://github.com/indykite/indykite-sdk-web/commit/d9bc415b1e8af4db42bb87f09152ce5e8ffcad30))
+
+
+### Bug Fixes
+
+* rename otptoken to token ([73a5288](https://github.com/indykite/indykite-sdk-web/commit/73a52887107a8407a505cbfb9eb61759ea7652c9))
+
 ## [0.2.10](https://github.com/indykite/indykite-sdk-web/compare/v0.2.9...v0.2.10) (2023-01-09)
 
 

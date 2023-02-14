@@ -6,6 +6,7 @@ interface InitProps {
   baseUri?: string;
   localeConfig?: LocaleConfigType | null;
   disableInlineStyles?: boolean;
+  version?: "v1" | "v2";
 }
 
 export function IKUIInit(config: InitProps): void;

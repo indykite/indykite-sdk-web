@@ -34,7 +34,7 @@
   "author": "IndyKite",
   "license": "Apache-2.0",
   "dependencies": {
-    "axios": "^0.26.1",
+    "axios": "^0.27.0",
     "core-js": "^3.22.0",
     "crypto-js": "^4.1.1",
     "intl-messageformat": "^9.12.0",

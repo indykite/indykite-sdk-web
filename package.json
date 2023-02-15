@@ -34,10 +34,10 @@
   "author": "IndyKite",
   "license": "Apache-2.0",
   "dependencies": {
-    "axios": "^0.26.0",
-    "core-js": "^3.21.1",
+    "axios": "^0.26.1",
+    "core-js": "^3.22.0",
     "crypto-js": "^4.1.1",
-    "intl-messageformat": "^9.11.4",
+    "intl-messageformat": "^9.12.0",
     "query-string": "^7.1.1",
     "regenerator-runtime": "^0.13.9",
     "qrcode": "1.5.1"
@@ -51,7 +51,7 @@
     "@types/jest": "^27.4.0",
     "babel-loader": "^8.2.2",
     "css-loader": "6.7.3",
-    "es-check": "^6.2.1",
+    "es-check": "^7.0.1",
     "husky": "^7.0.4",
     "jest": "^27.0.6",
     "lint-staged": "^10.4.0",

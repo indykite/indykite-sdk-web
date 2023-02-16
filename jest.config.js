@@ -13,6 +13,11 @@ const config = {
       statements: 95,
     },
   },
+  transformIgnorePatterns: [
+    "node_modules/(?!" +
+      ["query-string", "decode-uri-component", "split-on-first", "filter-obj"].join("|") +
+      ")",
+  ],
 };
 
 module.exports = config;

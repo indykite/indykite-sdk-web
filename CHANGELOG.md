@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.12](https://github.com/indykite/indykite-sdk-web/compare/v0.2.11...v0.2.12) (2023-02-16)
+
+
+### Features
+
+* allow to select an authentication version ([03c1708](https://github.com/indykite/indykite-sdk-web/commit/03c1708318f424e7070f0a49814335bf28d70444))
+
+
+### Bug Fixes
+
+* allow to use token and arguments together ([2d815e3](https://github.com/indykite/indykite-sdk-web/commit/2d815e3352a0d333ab8178fabf63fabfc75c5475))
+
 ## [0.2.11](https://github.com/indykite/indykite-sdk-web/compare/v0.2.10...v0.2.11) (2023-02-13)
 
 

@@ -32,6 +32,13 @@ In order to access to the platform you must obtain an API key first.
 
 Visit the IndyKite One Developer Community site for official [IndyKite documentation](https://indykite.one/blog?category=5e3e9297-3451-4b52-91ee-8027dcd1789c) and to find out how to use the entire platform for your project.
 
+## Prerequisites
+
+You need to have the following before using the Web SDK:
+
+- An AppSpace, App, AppAgent, and AppAgent credentials
+- A deployed authentication flow
+
 ## Installation
 
 ##### From [npm](https://www.npmjs.com/package/@indykiteone/indykite-sdk-web):
@@ -40,7 +47,24 @@ Visit the IndyKite One Developer Community site for official [IndyKite documenta
 npm install @indykiteone/indykite-sdk-web
 ```
 
-##### From CDN:
+From [yarn](https://yarnpkg.com/):
+```
+yarn add @indykiteone/indykite-sdk-web
+```
+
+### Import version
+
+You can use the Web SDK by importing the SDK as a package to your JavaScript framework. With this option, the source files are in a readable (unbuilt) form. Since this form is not prebuilt, it is necessary to build your application using tools such as webpack or babel.
+
+`import { IKUIInit } from "@indykiteone/indykite-sdk-web";`
+
+**Note**: If you are building apps with frameworks like React, Angular or Vue.js. You have most likely already setup
+a build process (often automatically by the framework), and therefore do not need to do anything.
+
+In case you need support for Internet Explorer (ES5) please let us know in issues, and we will provide
+you with built sdk or build instructions.
+
+#### From CDN:
 
 UNPKG
 
@@ -56,22 +80,13 @@ jsDelivr
 
 ### Browser support
 
-#### CDN .dist.js version
+**CDN .dist.js version** is built with support for all recent versions of major browsers (Chrome, Firefox, Safari, Edge, Opera).
 
-Is build with support for all recent versions of major browsers (Chrome, FF, Safari, Edge, Opera).
 
-#### import version
-
-`import { IKUIInit } from "@indykiteone/indykite-sdk-web";` Is not prebuild. It's necessary for you to build your application using tools like webpack and babel.
-If you are building apps with frameworks like React, Angular or Vue.js. You have most likely already setup
-a build process (often automatically by the framework), and you don't need to do anything.
-
-In case you need support for Internet Explorer (ES5) please let us know in issues, and we will provide
-you with built sdk or build instructions.
 
 ## API
 
-##### dist.js package
+#### dist.js package
 
 In case of using the dist package. All functions are exported under the `IK` keyword.
 For example:
@@ -91,8 +106,7 @@ For a trial please contact [IndyKite](https://www.indykite.com/contact-us) to se
 
 ### Init
 
-To use the functions from the library you first need to initialize the lib.
-This should be done in entry point to the app.
+To use the UI elements provided by the @indykiteone/indykite-sdk-web library, you first need to initialize lib. This should be done in entry point to the app.
 
 ```javascript
 import { IKUIInit } from "@indykiteone/indykite-sdk-web";

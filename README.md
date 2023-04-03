@@ -166,7 +166,7 @@ const IKForm = () => {
         console.log(data);
         // You can store the access token from the data object, but the UISDK can handle
         // all this for you so theoretically you don't need to manage tokens yourself.
-        // The authentication flow ended here and you can do a redirection to your application now
+        // The authentication flow ended here and you can do a redirection to your application now.
       },
       onFail: (error) => {
         console.error(error);

@@ -2,9 +2,9 @@
     <img src="logo.png" alt="IndyKite logo" title="IndyKite.ID" align="right" width="200"/>
 </a>
 
-# IndyKite Client UI SDK
+# IndyKite Web SDK
 
-IndyKite is a cloud identity platform built to secure and manage human & non-person (IoT) identities and their data. This repository containts the JavaScript Library packages for [IndyKite Platform](https://indykite.com/) Client SDK.
+IndyKite is a cloud identity platform built to secure and manage human and non-person (IoT) identities and their data. This repository contains the JavaScript Library packages for [IndyKite Platform](https://indykite.com/) Web SDK.
 
 This library contains multiple client libraries for each service of the platform.
 
@@ -12,21 +12,7 @@ This library contains multiple client libraries for each service of the platform
 ![npm type definitions](https://img.shields.io/npm/types/@indykiteone/indykite-sdk-web?style=flat-square)
 [![codecov](https://codecov.io/gh/indykite/indykite-sdk-web/branch/master/graph/badge.svg?token=33M4Y8GYFV)](https://codecov.io/gh/indykite/indykite-sdk-web)
 
-In order to access to the platform you must obtain an API key first.
-
-## Terminology
-
-| Definition               | Description                                                                                      |
-| ------------------------ | ------------------------------------------------------------------------------------------------ |
-| Digital Twin             | A digital twin is the digital identity of a physical entity on/in a software/identity system     |
-| Application Space ID     | ID of the application where the digital twin belongs to                                          |
-| Application Agent ID     | ID of the agent which makes the application available for the different calls                    |
-| Tenant ID                | ID of the tenant where the digital twin belongs to. The tenant is belong to an application space |
-| Private Key and Settings | The secret which required to reach the system. Indykite provides the necessary secrets           |
-| Property                 | The digital twin's property (eg.: email, name)                                                   |
-| JWT                      | JSON Web Tokens                                                                                  |
-| Introspect               | A process used to validate the token and to retrieve properties assigned to the token            |
-| Patch property           | Add, change or delete a property of a digital twin                                               |
+To access to the platform, you must obtain AppAgent credentials first.
 
 ## Documentation
 

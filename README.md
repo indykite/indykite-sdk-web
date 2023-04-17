@@ -48,6 +48,7 @@ npm install @indykiteone/indykite-sdk-web
 ```
 
 From [yarn](https://yarnpkg.com/):
+
 ```
 yarn add @indykiteone/indykite-sdk-web
 ```
@@ -78,8 +79,6 @@ jsDelivr
 ### Browser support
 
 **CDN .dist.js version** is built with support for all recent versions of major browsers (Chrome, Firefox, Safari, Edge, Opera).
-
-
 
 ## API
 

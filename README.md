@@ -61,9 +61,6 @@ You can use the Web SDK by importing the SDK as a package to your JavaScript fra
 **Note**: If you are building apps with frameworks like React, Angular or Vue.js. You have most likely already setup
 a build process (often automatically by the framework), and therefore do not need to do anything.
 
-In case you need support for Internet Explorer (ES5) please let us know in issues, and we will provide
-you with built sdk or build instructions.
-
 #### From CDN:
 
 UNPKG

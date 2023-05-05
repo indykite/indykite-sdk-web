@@ -1,6 +1,6 @@
 {
   "name": "@indykiteone/indykite-sdk-web",
-  "version": "0.2.12",
+  "version": "0.2.13",
   "description": "Web SDK for IndyKite.id",
   "main": "./lib/services/core/index.js",
   "types": "./lib/services/core/index.d.ts",

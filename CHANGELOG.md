@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.13](https://github.com/indykite/indykite-sdk-web/compare/v0.2.12...v0.2.13) (2023-05-05)
+
+
+### Bug Fixes
+
+* do not send token param after page refresh ([9e0cc81](https://github.com/indykite/indykite-sdk-web/commit/9e0cc8157f436047af172f7b9f4861039d8abda9))
+
 ## [0.2.12](https://github.com/indykite/indykite-sdk-web/compare/v0.2.11...v0.2.12) (2023-02-16)
 
 

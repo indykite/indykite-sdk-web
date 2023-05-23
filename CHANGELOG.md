@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.14](https://github.com/indykite/indykite-sdk-web/compare/v0.2.13...v0.2.14) (2023-05-23)
+
+
+### Bug Fixes
+
+* replace axios package with node-request ([6ff194e](https://github.com/indykite/indykite-sdk-web/commit/6ff194e966e332c31ad24ef93d0afab23c1719b8))
+
 ## [0.2.13](https://github.com/indykite/indykite-sdk-web/compare/v0.2.12...v0.2.13) (2023-05-05)
 
 

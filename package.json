@@ -34,11 +34,11 @@
   "author": "IndyKite",
   "license": "Apache-2.0",
   "dependencies": {
-    "axios": "0.26.0",
     "babel-jest": "^29.4.3",
     "core-js": "^3.29.1",
     "crypto-js": "^4.1.1",
     "intl-messageformat": "^10.3.3",
+    "node-fetch": "2.6.11",
     "qrcode": "1.5.1",
     "query-string": "^8.0.0",
     "regenerator-runtime": "^0.13.9"

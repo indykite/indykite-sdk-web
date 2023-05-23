@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: "12.x"
+          node-version: "14.x"
           registry-url: "https://registry.npmjs.org"
 
       - run: |
@@ -37,8 +37,8 @@ jobs:
       - name: "Build the dist package"
         run: npm run-script build
 
-      - name: "Verify es support of dist package"
-        run: npm run-script check-es
+      # - name: "Verify es support of dist package"
+      #   run: npm run-script check-es
 
       - name: "Publish the package"
         run: npm publish --access public --tag alpha

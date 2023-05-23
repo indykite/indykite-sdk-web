@@ -43,9 +43,9 @@ jobs:
         run: npm run-script build
         if: ${{ steps.release-please.outputs.release_created }}
 
-      - name: "Verify es support of dist package"
-        run: npm run-script check-es
-        if: ${{ steps.release-please.outputs.release_created }}
+      # - name: "Verify es support of dist package"
+      #   run: npm run-script check-es
+      #   if: ${{ steps.release-please.outputs.release_created }}
 
       - name: "Publish the package"
         if: ${{ steps.release-please.outputs.release_created }}

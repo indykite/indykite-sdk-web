@@ -1,0 +1,49 @@
+name: Generate docs and create PR
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "lib/**"
+
+jobs:
+  generate-docs:
+    runs-on: ubuntu-latest
+    env:
+      BRANCH_NAME: docs-update
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16.x"
+      - name: Install dependencies
+        run: yarn install
+      - name: Create new branch
+        uses: peterjgrainger/action-create-branch@v2.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+        with:
+          branch: ${{ env.BRANCH_NAME }}
+      - name: Generate docs
+        run: yarn generate-docs
+      - name: Commit changes
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add .
+          git commit -m "docs: update documentation"
+      - name: Check if PR already exists
+        id: check_pr
+        run: |
+          gh pr list -B master --state open | grep -q "$BRANCH_NAME" && echo "::set-output name=exists::true" || echo "::set-output name=exists::false"
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+      - name: Create PR
+        if: steps.check_pr.outputs.exists == 'false'
+        run: |
+          gh pr create -B master -H $BRANCH_NAME --title 'Update documentation' --body 'Automatically generated PR to update documentation'
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}

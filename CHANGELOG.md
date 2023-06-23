@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.16](https://github.com/indykite/indykite-sdk-web/compare/v0.2.15...v0.2.16) (2023-06-23)
+
+
+### Bug Fixes
+
+* update webauthn login with fixing id in requests ([628fb72](https://github.com/indykite/indykite-sdk-web/commit/628fb720dc100bcef74091a3f473b7bf71147b8a))
+
 ## [0.2.15](https://github.com/indykite/indykite-sdk-web/compare/v0.2.14...v0.2.15) (2023-05-24)
 
 

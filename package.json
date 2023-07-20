@@ -48,7 +48,7 @@
     "@babel/core": "^7.21.3",
     "@babel/preset-env": "^7.14.8",
     "@commitlint/cli": "^17.6.1",
-    "@commitlint/config-conventional": "^16.0.0",
+    "@commitlint/config-conventional": "^17.0.0",
     "@types/jest": "^29.5.0",
     "babel-loader": "^8.2.2",
     "css-loader": "6.8.1",

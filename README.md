@@ -582,7 +582,9 @@ const IKResetPasswordForm = ({ referenceId }) => {
 };
 ```
 
-### Log in with an OTP token
+### Log in with tokens
+
+#### OTP Token
 
 ![](/assets/invitation.png)
 A user can get an invitation email which contains a reference ID. You need to pass this ID the same way as you did in the [Reset password](#using-an-action-clicking-on-did-you-forgot-you-password-button) flow, and that's to use this ID as the `token` property. This will cause your authentication to start with the Input Invitation node.
@@ -617,6 +619,46 @@ const IKResetPasswordForm = ({ referenceId }) => {
   );
 };
 ```
+
+#### Magic link
+
+![](/assets/magic_link_flow.png)
+
+An authentication flow can also use a Magic Link. In this case a user is asked to enter a code they got in an email. The received email may contain a reference ID - very likely used in a clickable URL address. After this address is opened you need to ensure that the authentication flow is started with the `~token` property in the same way how it was used in the previous example.
+
+```ts
+import ReactDOM from "react-dom";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
+
+const IKMagicLinkForm = ({ referenceId }) => {
+  React.useEffect(() => {
+    if (referenceId) {
+      IKUICore.renderForm({
+        renderElementSelector: "#form-container",
+        onSuccess: (data) => {
+          console.log(data);
+          // You can store the access token from the data object, but the UISDK can handle
+          // all this for you so theoretically you don't need to manage tokens yourself.
+          // The authentication flow ended here and you can do a redirection to your application now
+        },
+        onFail: (error) => {
+          console.error(error);
+        },
+        token: referenceId,
+      });
+    }
+  }, [referenceId]);
+
+  return (
+    <div>
+      <div id="form-container" />
+    </div>
+  );
+};
+```
+
+> Please note that in order to make this working you need to setup your email configuration.
+> For more details see [this tutorial](https://docs.indykite.com/docs/developer-documentation/authentication/set-up-magic-link-flow.md#set-up-email).
 
 ## Custom OIDC provider
 

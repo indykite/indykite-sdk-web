@@ -618,6 +618,41 @@ const IKResetPasswordForm = ({ referenceId }) => {
 };
 ```
 
+### Log in with WebAuthn
+
+The SDK allows a user to login using the WebAuthn authentication as well. You don't need to add any parameters to the render function, you only need to setup an authentication flow and WebAuthn configuration.
+The steps how to configure the WebAuthn authentication can be found [here](https://docs.indykite.com/docs/developer-documentation/authentication/set-up-webauthn).
+
+![](/assets/webauthn_flow.png)
+
+```ts
+import ReactDOM from "react-dom";
+import { IKUICore } from "@indykiteone/indykite-sdk-web";
+
+const IKForm = () => {
+  React.useEffect(() => {
+    IKUICore.renderForm({
+      renderElementSelector: "#form-container",
+      onSuccess: (data) => {
+        console.log(data);
+        // You can store the access token from the data object, but the UISDK can handle
+        // all this for you so theoretically you don't need to manage tokens yourself.
+        // The authentication flow ended here and you can do a redirection to your application now.
+      },
+      onFail: (error) => {
+        console.error(error);
+      },
+    });
+  }, []);
+
+  return (
+    <div>
+      <div id="form-container" />
+    </div>
+  );
+};
+```
+
 ## Custom OIDC provider
 
 In case you want to act as an OIDC provider, you have to call the `IKUIOidc.handleOidcOriginalParamsAndRedirect` function before you start your auth flow.

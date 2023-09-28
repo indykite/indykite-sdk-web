@@ -41,7 +41,7 @@
     "node-fetch": "2.6.12",
     "qrcode": "1.5.3",
     "query-string": "^8.0.0",
-    "regenerator-runtime": "^0.13.9"
+    "regenerator-runtime": "^0.14.0"
   },
   "devDependencies": {
     "node-polyfill-webpack-plugin": "^2.0.0",

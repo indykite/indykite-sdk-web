@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.19](https://github.com/indykite/indykite-sdk-web/compare/v0.2.18...v0.2.19) (2023-10-17)
+
+
+### Bug Fixes
+
+* changed style to use wildcard ([cb5be36](https://github.com/indykite/indykite-sdk-web/commit/cb5be362badff83784769cf14663e054bcb9c39a))
+* style enterprise esso button ([8dcf238](https://github.com/indykite/indykite-sdk-web/commit/8dcf238f67e9714c376686677b25e848d240e419))
+
 ## [0.2.18](https://github.com/indykite/indykite-sdk-web/compare/v0.2.17...v0.2.18) (2023-07-25)
 
 

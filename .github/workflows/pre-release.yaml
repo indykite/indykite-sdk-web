@@ -18,7 +18,7 @@ jobs:
       released: ${{ steps.release-please.outputs.release_created }}
       pr_number: ${{ steps.echo-pr.outputs.pr_number }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: "14.x"
